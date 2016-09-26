@@ -34,7 +34,7 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div id="navBar" class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -55,7 +55,7 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div id="viewWindow" class="container body-content">
         @RenderBody()
         @*<hr />
         <footer>
@@ -66,8 +66,9 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     <script type="text/javascript" src="~/Scripts/jquery.signalR-2.2.1.js"></script>
-    <script src="signalr/hubs"></script>
+    <script src="~/signalr/hubs"></script>
     <script type="text/javascript" src="~/Scripts/PQMark.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

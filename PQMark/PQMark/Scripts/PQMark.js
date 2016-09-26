@@ -21,4 +21,9 @@
 //
 //******************************************************************************************************
 
-var dataHub = $.connection.dataHub;
+var dataHubIsConnected = false;
+var dataHub = $.connection.dataHub.server;
+$.connection.hub.start().done(function () {
+    dataHubIsConnected = true;
+    $(document).trigger('dataHubConnected');
+});
