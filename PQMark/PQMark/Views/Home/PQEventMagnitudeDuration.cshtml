@@ -30,9 +30,165 @@
 {
 
 }
+<div class="row">
+    <div class="col-md-2 pull-left">
+        <select id="companySelect" class="form-control"></select>
+    </div>
+    <div class="col-md-2 pull-right">
+        <select id="siteSelect" class="form-control"></select>
+    </div>
+</div>
+<div class="row">
+    <div id="plot"></div>
+</div>
 
 @section Scripts
 {
+    <script>
+        $(function () {
+            $('#viewWindow').height($(document).height() - $('#navBar').outerHeight() - $('#companySelect').height());
+            //$('#viewWindow').width('100%');
+            $(document).on('dataHubConnected', function () {
+                dataHub.getCompanyForSelectBox().done(function (companies) {
+                    $.each(companies, function (index, company) {
+                        if (index === 0) {
+                            $('#siteSelect').append(new Option("All Sites", 0));
+                            dataHub.getSiteForSelectBox(company.ID).done(function (sites) {
+                                $.each(sites, function (index2, site) {
+                                    if (index === 0 && index2 === 0) {
+                                        dataHub.getPQEventDataAllSites(company.ID).done(function (data) {
+                                            var companyTrace = { x: [], y: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'scatter' ,mode: 'markers'};
+                                            $.each(data, function (i, d) {
+                                                companyTrace.x.push(d.DurationSeconds);
+                                                companyTrace.y.push(d.PerUnitMagnitude * 100);
+                                            });
+                                            makePlot(companyTrace);
+ 
+
+                                        });
+                                    }
+
+                                    $('#siteSelect').append(new Option(site.Label, site.ID));
+                                });
+                            });
+
+                        }
+
+                        $('#companySelect').append(new Option(company.Label, company.ID));
+                    });
+                });
+            });
+
+
+            $('#companySelect').on('change', function () {
+                dataHub.getSiteForSelectBox($('#companySelect').val()).done(function (sites) {
+                    $('#siteSelect').children().remove();
+                    $('#siteSelect').append(new Option("All Sites", 0));
+
+                    $.each(sites, function (index, site) {
+                        $('#siteSelect').append(new Option(site.Label, site.ID));
+                    });
+                    Plotly.purge('plot');
+                    dataHub.getPQEventDataAllSites($('#companySelect').val()).done(function (data) {
+                        var companyTrace = { x: [], y: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'scatter', mode: 'markers' };
+                        $.each(data, function (i, d) {
+                            companyTrace.x.push(d.DurationSeconds);
+                            companyTrace.y.push(d.PerUnitMagnitude * 100);
+                        });
+                        makePlot(companyTrace);
+                    });
+
+                });
+
+            });
+
+            $('#siteSelect').on('change', function () {
+                Plotly.purge('plot');
+                if ($('#siteSelect').val() == 0) {
+                    Plotly.purge('plot');
+                    dataHub.getPQEventDataAllSites($('#companySelect').val()).done(function (data) {
+                        var companyTrace = { x: [], y: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'scatter', mode: 'markers' };
+                        $.each(data, function (i, d) {
+                            companyTrace.x.push(d.DurationSeconds);
+                            companyTrace.y.push(d.PerUnitMagnitude * 100);
+                        });
+                        makePlot(companyTrace);
+                    });
+
+                }
+                else {
+                    Plotly.purge('plot');
+                    dataHub.getPQEventData($('#siteSelect').val()).done(function (data) {
+                        var companyTrace = { x: [], y: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'scatter', mode: 'markers' };
+                        $.each(data, function (i, d) {
+                            companyTrace.x.push(d.DurationSeconds);
+                            companyTrace.y.push(d.PerUnitMagnitude * 100);
+                        });
+                        makePlot(companyTrace);
+                    });
+
+                }
+            });
+
+            function makePlot(companyTrace) {
+                var layout = {
+                    title: 'Event Magnitude Duration Scatter Plot',
+                    //showLink: false,
+                    //displayLogo: false,
+                    //autosize: false,
+                    width: $('#viewWindow').innerWidth(),
+                    xaxis: { title: 'Duration (Seconds)', type: 'log', tickvals: [0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000], range: [-3, 4] },
+                    yaxis: { side: 'left', overlaying: 'y', anchor: 'x', title: 'Remaining RMS Voltage (%)', range: [0, 150] },
+                    //margin: {
+                    //    l: 15,
+                    //    r: 15,
+                    //    t: 50,
+                    //    b: 50,
+                    //    pad: 15
+                    //},
+                    height: ($(document).height() - $('#navBar').outerHeight() - $('#companySelect').height()) * 0.85,
+                };
+                
+                dataHub.getCurves().done(function (curves) {
+                    var iticUpper = { x: $.map(curves, function (curve) { if (curve.VoltageCurveID == 1) return parseFloat(curve.DurationSeconds) }), y: $.map(curves, function (curve) { if (curve.VoltageCurveID == 1) return parseFloat(curve.PerUnitMagnitude) * 100 }), name: 'ITIC-Upper', type: 'scatter', mode: 'lines' };
+                    var iticLower = { x: $.map(curves, function (curve) { if (curve.VoltageCurveID == 2) return parseFloat(curve.DurationSeconds) }), y: $.map(curves, function (curve) { if (curve.VoltageCurveID == 2) return parseFloat(curve.PerUnitMagnitude) * 100 }), name: 'ITIC-Lower', type: 'scatter', mode: 'lines' };
+                    var semi = { x: $.map(curves, function (curve) { if (curve.VoltageCurveID == 3) return curve.DurationSeconds }), y: $.map(curves, function (curve) { if (curve.VoltageCurveID == 3) return curve.PerUnitMagnitude * 100 }), name: 'SEMI', type: 'scatter', mode: 'lines' };
+                    Plotly.newPlot('plot', [companyTrace, iticUpper, iticLower, semi], layout);
+                });
+
+
+            }
+
+            $(window).on('resize', function () {
+                Plotly.purge('plot');
+                if ($('#siteSelect').val() == 0) {
+                    Plotly.purge('plot');
+                    dataHub.getPQEventDataAllSites($('#companySelect').val()).done(function (data) {
+                        var companyTrace = { x: [], y: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'scatter', mode: 'markers' };
+                        $.each(data, function (i, d) {
+                            companyTrace.x.push(d.DurationSeconds);
+                            companyTrace.y.push(d.PerUnitMagnitude * 100);
+                        });
+                        makePlot(companyTrace);
+                    });
+
+                }
+                else {
+                    Plotly.purge('plot');
+                    dataHub.getPQEventData($('#siteSelect').val()).done(function (data) {
+                        var companyTrace = { x: [], y: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'scatter', mode: 'markers' };
+                        $.each(data, function (i, d) {
+                            companyTrace.x.push(d.DurationSeconds);
+                            companyTrace.y.push(d.PerUnitMagnitude * 100);
+                        });
+                        makePlot(companyTrace);
+                    });
+
+                }
+
+            });
+        });
+</script>
 
 }
 

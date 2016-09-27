@@ -222,10 +222,12 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\Disturbance.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SARFI.cs" />
     <Compile Include="Models\Site.cs" />
+    <Compile Include="Models\VoltageCurvePoint.cs" />
     <Compile Include="Models\VoltageEnvelope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

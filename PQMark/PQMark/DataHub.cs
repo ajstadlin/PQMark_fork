@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using GSF.Data;
@@ -48,6 +49,28 @@ namespace PQMark
         }
 
         #endregion
+
+        #region [PQEvent Plot Methods]
+        public IEnumerable<Disturbance> GetPQEventData(int siteId)
+        {
+            DataTable table = DataContext.Connection.RetrieveData("SELECT * FROM Disturbance WHERE SiteID  IN (SELECT MeterID FROM Site Where ID = {0}) ", siteId);
+            return table.Select().Select(row => DataContext.Table<Disturbance>().LoadRecord(row));
+
+        }
+
+        public IEnumerable<Disturbance> GetPQEventDataAllSites(int companyId)
+        {
+            DataTable table = DataContext.Connection.RetrieveData("SELECT * FROM Disturbance WHERE SiteID IN (Select MeterID FROM [Site] WHERE CompanyID = {0})", companyId);
+            return table.Select().Select(row => DataContext.Table<Disturbance>().LoadRecord(row));
+        }
+
+        public IEnumerable<VoltageCurvePoint> GetCurves()
+        {
+            return DataContext.Table<VoltageCurvePoint>().QueryRecords("VoltageCurveID, LoadOrder", restriction: new RecordRestriction("VoltageCurveID IN (SELECT ID FROM VoltageCurve WHERE Name ='ITIC UPPER' OR Name = 'ITIC Lower' OR Name = 'SEMI')"));
+        }
+
+        #endregion
+
 
     }
 }
