@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
 using System.Linq;
 using System.Web;
@@ -80,7 +81,7 @@ namespace PQMark
 
         public IEnumerable<PQVoltageEvent> GetPQEvent3DDataAllSites(int companyId)
         {
-            DataTable table = DataContext.Connection.RetrieveData("SELECT Duration.ID AS DurationID, VoltageBin.ID AS VoltageBinID, COALESCE(Temp.[Count],0) as [Count] FROM VoltageBin CROSS JOIN Duration Left JOin (SELECT Count(*) AS[Count], Duration.ID As DurationIndex, VoltageBin.ID AS VoltageIndex FROM Disturbance CROSS JOIN Duration CROSS JOIN VoltageBin WHERE DurationSeconds < Duration.Max AND DurationSeconds >= Duration.Min AND PerUnitMagnitude * 100 >= VoltageBin.Min AND PerUnitMagnitude * 100 < VoltageBin.Max AND SiteID IN(Select MeterID FROM[Site] WHERE CompanyID = {0}) GROUP BY Duration.ID, VoltageBin.ID) Temp ON VoltageBin.id = Temp.VoltageIndex AND Duration.ID = temp.DurationIndex", companyId);
+            DataTable table = DataContext.Connection.RetrieveData("SELECT Duration.ID AS DurationID, VoltageBin.ID AS VoltageBinID, COALESCE(Temp.[Count],0)/(SELECT Count(*) FROM Site WHERE CompanyID = {0}) as [Count] FROM VoltageBin CROSS JOIN Duration Left JOin (SELECT Count(*) AS[Count], Duration.ID As DurationIndex, VoltageBin.ID AS VoltageIndex FROM Disturbance CROSS JOIN Duration CROSS JOIN VoltageBin WHERE DurationSeconds < Duration.Max AND DurationSeconds >= Duration.Min AND PerUnitMagnitude * 100 >= VoltageBin.Min AND PerUnitMagnitude * 100 < VoltageBin.Max AND SiteID IN(Select MeterID FROM[Site] WHERE CompanyID = {1}) GROUP BY Duration.ID, VoltageBin.ID) Temp ON VoltageBin.id = Temp.VoltageIndex AND Duration.ID = temp.DurationIndex", companyId, companyId);
             return table.Select().Select(row => DataContext.Table<PQVoltageEvent>().LoadRecord(row));
 
         }
@@ -98,6 +99,30 @@ namespace PQMark
         }
 
 
+
         #endregion
+
+
+        #region [Voltage THD Methods]
+        public IEnumerable<PQVoltageEvent> GetVoltageTHDData(int siteId)
+        {
+            DataTable table = DataContext.Connection.RetrieveData("SELECT Duration.ID AS DurationID, VoltageBin.ID AS VoltageBinID, COALESCE(Temp.[Count],0) as [Count] FROM VoltageBin CROSS JOIN Duration Left JOin (SELECT Count(*) AS[Count], Duration.ID As DurationIndex, VoltageBin.ID AS VoltageIndex FROM Disturbance CROSS JOIN Duration CROSS JOIN VoltageBin WHERE DurationSeconds < Duration.Max AND DurationSeconds >= Duration.Min AND PerUnitMagnitude * 100 >= VoltageBin.Min AND PerUnitMagnitude * 100 < VoltageBin.Max AND SiteID IN (SELECT MeterID FROM Site WHERE ID = {0}) GROUP BY Duration.ID, VoltageBin.ID) Temp ON VoltageBin.id = Temp.VoltageIndex AND Duration.ID = temp.DurationIndex", siteId);
+            return table.Select().Select(row => DataContext.Table<PQVoltageEvent>().LoadRecord(row));
+        }
+
+        public List<Dictionary<string, string>> GetVoltageTHDDataAllSites(int companyId)
+        {
+            DataTable table = DataContext.Connection.RetrieveData("SELECT * FROM VoltageTHD WHERE ID IN (SELECT MeterID FROM Site WHERE CompanyID = {0})", companyId);
+            return table.Select().Select(row =>
+            {
+                return table.Columns.Cast<DataColumn>().ToDictionary(col => col.ColumnName, col => row[col].ToString());
+            }).ToList();
+
+        }
+
+
+
+        #endregion
+
     }
 }
