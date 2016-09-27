@@ -71,6 +71,33 @@ namespace PQMark
 
         #endregion
 
+        #region [PQEvent 3D Methods]
+        public IEnumerable<PQVoltageEvent> GetPQEvent3DData(int siteId)
+        {
+            DataTable table =  DataContext.Connection.RetrieveData("SELECT Duration.ID AS DurationID, VoltageBin.ID AS VoltageBinID, COALESCE(Temp.[Count],0) as [Count] FROM VoltageBin CROSS JOIN Duration Left JOin (SELECT Count(*) AS[Count], Duration.ID As DurationIndex, VoltageBin.ID AS VoltageIndex FROM Disturbance CROSS JOIN Duration CROSS JOIN VoltageBin WHERE DurationSeconds < Duration.Max AND DurationSeconds >= Duration.Min AND PerUnitMagnitude * 100 >= VoltageBin.Min AND PerUnitMagnitude * 100 < VoltageBin.Max AND SiteID IN (SELECT MeterID FROM Site WHERE ID = {0}) GROUP BY Duration.ID, VoltageBin.ID) Temp ON VoltageBin.id = Temp.VoltageIndex AND Duration.ID = temp.DurationIndex", siteId);
+            return table.Select().Select(row => DataContext.Table<PQVoltageEvent>().LoadRecord(row));
+        }
 
+        public IEnumerable<PQVoltageEvent> GetPQEvent3DDataAllSites(int companyId)
+        {
+            DataTable table = DataContext.Connection.RetrieveData("SELECT Duration.ID AS DurationID, VoltageBin.ID AS VoltageBinID, COALESCE(Temp.[Count],0) as [Count] FROM VoltageBin CROSS JOIN Duration Left JOin (SELECT Count(*) AS[Count], Duration.ID As DurationIndex, VoltageBin.ID AS VoltageIndex FROM Disturbance CROSS JOIN Duration CROSS JOIN VoltageBin WHERE DurationSeconds < Duration.Max AND DurationSeconds >= Duration.Min AND PerUnitMagnitude * 100 >= VoltageBin.Min AND PerUnitMagnitude * 100 < VoltageBin.Max AND SiteID IN(Select MeterID FROM[Site] WHERE CompanyID = {0}) GROUP BY Duration.ID, VoltageBin.ID) Temp ON VoltageBin.id = Temp.VoltageIndex AND Duration.ID = temp.DurationIndex", companyId);
+            return table.Select().Select(row => DataContext.Table<PQVoltageEvent>().LoadRecord(row));
+
+        }
+
+        public IEnumerable<Duration> GetDurationBins()
+        {
+            return DataContext.Table<Duration>().QueryRecords();
+
+        }
+
+        public IEnumerable<VoltageBin> GetVoltageBins()
+        {
+            return DataContext.Table<VoltageBin>().QueryRecords();
+
+        }
+
+
+        #endregion
     }
 }

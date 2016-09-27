@@ -223,10 +223,13 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Disturbance.cs" />
+    <Compile Include="Models\Duration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PQVoltageEvent.cs" />
     <Compile Include="Models\SARFI.cs" />
     <Compile Include="Models\Site.cs" />
+    <Compile Include="Models\VoltageBin.cs" />
     <Compile Include="Models\VoltageCurvePoint.cs" />
     <Compile Include="Models\VoltageEnvelope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
