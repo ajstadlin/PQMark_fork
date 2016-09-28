@@ -83,7 +83,7 @@
                                                     totalArray[i] = companyTrace.y[i] + totalArray[i-1];
                                             });
                                             
-                                            var cumulativeFrequency = { x: companyTrace.x, y: totalArray, name: 'Cumulative Frequency', type: 'scatter', mode: 'line' };
+                                            var cumulativeFrequency = { x: companyTrace.x, y: totalArray, name: 'Cumulative Frequency', type: 'scatter', mode: 'line', yaxis: 'y2' };
                                             makePlot(companyTrace, cumulativeFrequency);
 
 
@@ -111,18 +111,34 @@
                         $('#siteSelect').append(new Option(site.Label, site.ID));
                     });
                     Plotly.purge('plot');
-                    dataHub.getPQEvent3DDataAllSites($('#companySelect').val()).done(function (data) {
-                        var companyTrace = { /* x: [], y: [],*/ z: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'surface' };
-                        for (var i = 0; i < 16; ++i) {
-                            companyTrace.z.push([]);
-                            for (var j = 0; j < 9; ++j) {
-                                companyTrace.z[i].push(0);
-                            }
+                    dataHub.getVoltageTHDDataAllSites($('#companySelect').val()).done(function (data) {
+                        var companyTrace = { x: [], y: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'bar' };
+                        companyTrace.x = $.map(Object.keys(data[0]), function (value) { if (value != 'ID') return parseFloat(value) }).sort(function (a, b) { return a - b });
+                        var totalArray = [];
+                        var totalCount = 0;
+                        for (var i = 0; i < companyTrace.x.length; ++i) {
+                            companyTrace.y.push(0);
                         }
-                        $.each(data, function (i, d) {
-                            companyTrace.z[d.DurationID - 1][d.VoltageBinID - 1] = d.Count;
+
+                        $.each(data, function (i, list) {
+                            $.each(list, function (j, d) {
+                                if (j !== 'ID') {
+                                    companyTrace.y[parseFloat(j) * 10] += parseInt(d);
+                                    totalCount += parseInt(d);
+                                }
+                            });
                         });
-                        makePlot(companyTrace);
+
+                        $.each(companyTrace.y, function (i, d) {
+                            companyTrace.y[i] = d / totalCount * 100;
+                            if (i == 0)
+                                totalArray[i] = companyTrace.y[i];
+                            else
+                                totalArray[i] = companyTrace.y[i] + totalArray[i - 1];
+                        });
+
+                        var cumulativeFrequency = { x: companyTrace.x, y: totalArray, name: 'Cumulative Frequency', type: 'scatter', mode: 'line', yaxis: 'y2' };
+                        makePlot(companyTrace, cumulativeFrequency);
 
 
                     });
@@ -135,40 +151,74 @@
                 Plotly.purge('plot');
                 if ($('#siteSelect').val() == 0) {
                     Plotly.purge('plot');
-                    dataHub.getPQEvent3DDataAllSites($('#companySelect').val()).done(function (data) {
-                        var companyTrace = { /* x: [], y: [],*/ z: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'surface' };
-                        for (var i = 0; i < 16; ++i) {
-                            companyTrace.z.push([]);
-                            for (var j = 0; j < 9; ++j) {
-                                companyTrace.z[i].push(0);
-                            }
+                    dataHub.getVoltageTHDDataAllSites($('#companySelect').val()).done(function (data) {
+                        var companyTrace = { x: [], y: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'bar' };
+                        companyTrace.x = $.map(Object.keys(data[0]), function (value) { if (value != 'ID') return parseFloat(value) }).sort(function (a, b) { return a - b });
+                        var totalArray = [];
+                        var totalCount = 0;
+                        for (var i = 0; i < companyTrace.x.length; ++i) {
+                            companyTrace.y.push(0);
                         }
-                        $.each(data, function (i, d) {
-                            companyTrace.z[d.DurationID - 1][d.VoltageBinID - 1] = d.Count;
+
+                        $.each(data, function (i, list) {
+                            $.each(list, function (j, d) {
+                                if (j !== 'ID') {
+                                    companyTrace.y[parseFloat(j) * 10] += parseInt(d);
+                                    totalCount += parseInt(d);
+                                }
+                            });
                         });
-                        makePlot(companyTrace);
+
+                        $.each(companyTrace.y, function (i, d) {
+                            companyTrace.y[i] = d / totalCount * 100;
+                            if (i == 0)
+                                totalArray[i] = companyTrace.y[i];
+                            else
+                                totalArray[i] = companyTrace.y[i] + totalArray[i - 1];
+                        });
+
+                        var cumulativeFrequency = { x: companyTrace.x, y: totalArray, name: 'Cumulative Frequency', type: 'scatter', mode: 'line', yaxis: 'y2' };
+                        makePlot(companyTrace, cumulativeFrequency);
 
 
                     });
+
 
                 }
                 else {
                     Plotly.purge('plot');
-                    dataHub.getPQEvent3DData($('#siteSelect').val()).done(function (data) {
-                        var companyTrace = { /* x: [], y: [],*/ z: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'surface' };
-                        for (var i = 0; i < 16; ++i) {
-                            companyTrace.z.push([]);
-                            for (var j = 0; j < 9; ++j) {
-                                companyTrace.z[i].push(0);
-                            }
+                    dataHub.getVoltageTHDData($('#siteSelect').val()).done(function (data) {
+                        var companyTrace = { x: [], y: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'bar' };
+                        companyTrace.x = $.map(Object.keys(data[0]), function (value) { if (value != 'ID') return parseFloat(value) }).sort(function (a, b) { return a - b });
+                        var totalArray = [];
+                        var totalCount = 0;
+                        for (var i = 0; i < companyTrace.x.length; ++i) {
+                            companyTrace.y.push(0);
                         }
-                        $.each(data, function (i, d) {
-                            companyTrace.z[d.DurationID - 1][d.VoltageBinID - 1] = d.Count;
+
+                        $.each(data, function (i, list) {
+                            $.each(list, function (j, d) {
+                                if (j !== 'ID') {
+                                    companyTrace.y[parseFloat(j) * 10] += parseInt(d);
+                                    totalCount += parseInt(d);
+                                }
+                            });
                         });
-                        makePlot(companyTrace);
+
+                        $.each(companyTrace.y, function (i, d) {
+                            companyTrace.y[i] = d / totalCount * 100;
+                            if (i == 0)
+                                totalArray[i] = companyTrace.y[i];
+                            else
+                                totalArray[i] = companyTrace.y[i] + totalArray[i - 1];
+                        });
+
+                        var cumulativeFrequency = { x: companyTrace.x, y: totalArray, name: 'Cumulative Frequency', type: 'scatter', mode: 'line', yaxis: 'y2' };
+                        makePlot(companyTrace, cumulativeFrequency);
 
 
                     });
+
 
                 }
             });
@@ -177,51 +227,102 @@
                 var layout = {
                     title: 'Voltage Event (Sag and Interuption) Count by Duration and Voltage Percent',
                     width: $('#viewWindow').innerWidth(),
-                    //yaxis: { title: 'Duration', tickangle: 45, tickvals: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], ticktext: $.map(durationBins, function (value) { return value.Label }) },
+                    yaxis: { title: 'Count (% of Total)' },
+                    yaxis2: { title: 'Cumulative Frequency (%)', side: 'right', overlaying: 'y', anchor: 'x', range: [0,100]},
                     xaxis: { title: 'Voltage THD (%)' },
                     height: ($(document).height() - $('#navBar').outerHeight() - $('#companySelect').height()) * 0.85
                 };
-                Plotly.newPlot('plot', [companyTrace, cumulativeFrequency], layout);
+                
+                dataHub.getBenchmarkData().done(function (benchmarkData) {
+                    var indecies = $.map(Object.keys(benchmarkData[0]), function (value) { if (value != 'ID') return parseFloat(value) }).sort(function (a, b) { return a - b;});
+                    var totalCount = 0;
+
+                    $.each(indecies, function (i, d) {
+                        totalCount += parseFloat(benchmarkData[0][d])
+                    });
+                    var totalArray = [];
+
+                    $.each(indecies, function (i, d) {
+                        if (i == 0)
+                            totalArray[i] = parseFloat(benchmarkData[0][d])/totalCount * 100;
+                        else
+                            totalArray[i] = parseFloat(benchmarkData[0][d]) / totalCount * 100 + totalArray[i - 1];
+                    });
+
+                    var benchmarkCFD = { x: indecies, y: totalArray, name: 'Benchmark CFD', type: 'scatter', mode: 'line', yaxis: 'y2' };
+                    Plotly.newPlot('plot', [companyTrace, cumulativeFrequency, benchmarkCFD], layout);
+                });
             }
 
             $(window).on('resize', function () {
                 Plotly.purge('plot');
                 if ($('#siteSelect').val() == 0) {
                     Plotly.purge('plot');
-                    dataHub.getPQEvent3DDataAllSites($('#companySelect').val()).done(function (data) {
-                        var companyTrace = { /* x: [], y: [],*/ z: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'surface' };
-                        for (var i = 0; i < 16; ++i) {
-                            companyTrace.z.push([]);
-                            for (var j = 0; j < 9; ++j) {
-                                companyTrace.z[i].push(0);
-                            }
+                    dataHub.getVoltageTHDDataAllSites($('#companySelect').val()).done(function (data) {
+                        var companyTrace = { x: [], y: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'bar' };
+                        companyTrace.x = $.map(Object.keys(data[0]), function (value) { if (value != 'ID') return parseFloat(value) }).sort(function (a, b) { return a - b });
+                        var totalArray = [];
+                        var totalCount = 0;
+                        for (var i = 0; i < companyTrace.x.length; ++i) {
+                            companyTrace.y.push(0);
                         }
-                        $.each(data, function (i, d) {
-                            companyTrace.z[d.DurationID - 1][d.VoltageBinID - 1] = d.Count;
+
+                        $.each(data, function (i, list) {
+                            $.each(list, function (j, d) {
+                                if (j !== 'ID') {
+                                    companyTrace.y[parseFloat(j) * 10] += parseInt(d);
+                                    totalCount += parseInt(d);
+                                }
+                            });
                         });
-                        makePlot(companyTrace);
+
+                        $.each(companyTrace.y, function (i, d) {
+                            companyTrace.y[i] = d / totalCount * 100;
+                            if (i == 0)
+                                totalArray[i] = companyTrace.y[i];
+                            else
+                                totalArray[i] = companyTrace.y[i] + totalArray[i - 1];
+                        });
+
+                        var cumulativeFrequency = { x: companyTrace.x, y: totalArray, name: 'Cumulative Frequency', type: 'scatter', mode: 'line', yaxis: 'y2' };
+                        makePlot(companyTrace, cumulativeFrequency);
 
 
                     });
                 }
                 else {
                     Plotly.purge('plot');
-                    dataHub.getPQEvent3DData($('#siteSelect').val()).done(function (data) {
-                        var companyTrace = { /* x: [], y: [],*/ z: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'surface' };
-                        for (var i = 0; i < 16; ++i) {
-                            companyTrace.z.push([]);
-                            for (var j = 0; j < 9; ++j) {
-                                companyTrace.z[i].push(0);
-                            }
+                    dataHub.getVoltageTHDData($('#siteSelect').val()).done(function (data) {
+                        var companyTrace = { x: [], y: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'bar' };
+                        companyTrace.x = $.map(Object.keys(data[0]), function (value) { if (value != 'ID') return parseFloat(value) }).sort(function (a, b) { return a - b });
+                        var totalArray = [];
+                        var totalCount = 0;
+                        for (var i = 0; i < companyTrace.x.length; ++i) {
+                            companyTrace.y.push(0);
                         }
-                        $.each(data, function (i, d) {
-                            companyTrace.z[d.DurationID - 1][d.VoltageBinID - 1] = d.Count;
+
+                        $.each(data, function (i, list) {
+                            $.each(list, function (j, d) {
+                                if (j !== 'ID') {
+                                    companyTrace.y[parseFloat(j) * 10] += parseInt(d);
+                                    totalCount += parseInt(d);
+                                }
+                            });
                         });
-                        makePlot(companyTrace);
+
+                        $.each(companyTrace.y, function (i, d) {
+                            companyTrace.y[i] = d / totalCount * 100;
+                            if (i == 0)
+                                totalArray[i] = companyTrace.y[i];
+                            else
+                                totalArray[i] = companyTrace.y[i] + totalArray[i - 1];
+                        });
+
+                        var cumulativeFrequency = { x: companyTrace.x, y: totalArray, name: 'Cumulative Frequency', type: 'scatter', mode: 'line', yaxis: 'y2' };
+                        makePlot(companyTrace, cumulativeFrequency);
 
 
                     });
-
                 }
 
             });
