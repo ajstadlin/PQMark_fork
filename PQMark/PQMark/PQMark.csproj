@@ -242,6 +242,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\BlueEPRI_400.png" />
+    <Content Include="Images\epri_04_10_2007.jpg" />
+    <Content Include="Images\PQ Mark Logo 400.png" />
+    <Content Include="Images\PQ Mark Repository 400.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
