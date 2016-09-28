@@ -46,7 +46,7 @@
 {
     <script>
         $(function () {
-            $('#viewWindow').height($(document).height() - $('#navBar').outerHeight() - $('#companySelect').height());
+            $('#viewWindow').height($(window).innerHeight() - $('#navBar').outerHeight() - $('#companySelect').height());
             //$('#viewWindow').width('100%');
             $(document).on('dataHubConnected', function () {
                 dataHub.getCompanyForSelectBox().done(function (companies) {
@@ -146,7 +146,7 @@
                     //    b: 50,
                     //    pad: 15
                     //},
-                    height: ($(document).height() - $('#navBar').outerHeight() - $('#companySelect').height()) * 0.85,
+                    height: $('#viewWindow').height() * 0.85,
                 };
                 
                 dataHub.getCurves().done(function (curves) {
@@ -160,6 +160,8 @@
             }
 
             $(window).on('resize', function () {
+                $('#viewWindow').height($(window).innerHeight() - $('#navBar').outerHeight() - $('#companySelect').height());
+
                 Plotly.purge('plot');
                 if ($('#siteSelect').val() == 0) {
                     Plotly.purge('plot');

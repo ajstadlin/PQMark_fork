@@ -47,7 +47,7 @@
 {
     <script>
         $(function () {
-            $('#viewWindow').height($(document).height() - $('#navBar').outerHeight() - $('#companySelect').height());
+            $('#viewWindow').height($(window).innerHeight() - $('#navBar').outerHeight() - $('#companySelect').height());
             //$('#viewWindow').width('100%');
             $(document).on('dataHubConnected', function () {
                 dataHub.getCompanyForSelectBox().done(function (companies) {
@@ -230,7 +230,7 @@
                     yaxis: { title: 'Count (% of Total)', tickvals: [0, 10, 20, 30, 40, 50], range: [0, 50] },
                     yaxis2: { title: 'Cumulative Frequency (%)', side: 'right', overlaying: 'y', anchor: 'x', tickmode:'array', tickvals:[0,10,20,30,40,50,60,70,80,90,100], range: [0,100]},
                     xaxis: { title: 'Voltage THD (%)' },
-                    height: ($(document).height() - $('#navBar').outerHeight() - $('#companySelect').height()) * 0.85
+                    height: $('#viewWindow').height() * 0.85
                 };
                 
                 dataHub.getBenchmarkData().done(function (benchmarkData) {
@@ -255,6 +255,8 @@
             }
 
             $(window).on('resize', function () {
+                $('#viewWindow').height($(window).innerHeight() - $('#navBar').outerHeight() - $('#companySelect').height());
+
                 Plotly.purge('plot');
                 if ($('#siteSelect').val() == 0) {
                     Plotly.purge('plot');
