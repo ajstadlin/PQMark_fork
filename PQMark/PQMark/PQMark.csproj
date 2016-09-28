@@ -248,6 +248,7 @@
     <Content Include="Images\PQ Mark Repository 400.png" />
     <Content Include="Images\PQ Mark2_400.png" />
     <Content Include="Images\PQ Mark2_600.png" />
+    <Content Include="Images\PQMarkOverview.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\PQMark.pubxml" />
