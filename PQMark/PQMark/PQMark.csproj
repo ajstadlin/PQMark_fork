@@ -246,8 +246,11 @@
     <Content Include="Images\epri_04_10_2007.jpg" />
     <Content Include="Images\PQ Mark Logo 400.png" />
     <Content Include="Images\PQ Mark Repository 400.png" />
+    <Content Include="Images\PQ Mark2_400.png" />
+    <Content Include="Images\PQ Mark2_600.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\PQMark.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -167,7 +167,7 @@
                             scene: {
                                 yaxis: { title: 'Duration', tickangle: 45, tickvals: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], ticktext: $.map(durationBins, function (value) { return value.Label }) },
                                 xaxis: { title: 'Voltage (%)', tickangle: 45, tickvals: [0, 1, 2, 3, 4, 5, 6, 7, 8], ticktext: $.map(voltageBins, function (value) { return value.Label }) },
-                                zaxis: { title: 'Rate per Site per 365 Days' },
+                                zaxis: { title: 'Rate' },
                             },
                             height: ($(document).height() - $('#navBar').outerHeight() - $('#companySelect').height()) * 0.85,
                         };
