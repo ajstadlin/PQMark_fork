@@ -46,10 +46,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("PQ Events", "PQEventMagnitudeDuration", "Home")</li>
+                    <li>@Html.ActionLink("Event Rates", "PQVoltage3D", "Home")</li>
                     <li>@Html.ActionLink("SARFI", "SARFI", "Home")</li>
-                    <li>@Html.ActionLink("PQ Event", "PQEventMagnitudeDuration", "Home")</li>
-                    <li>@Html.ActionLink("Voltage THD", "VoltageTHDFrequency", "Home")</li>
-                    <li>@Html.ActionLink("PQ Voltage", "PQVoltage3D", "Home")</li>
+                    <li>@Html.ActionLink("Steady State", "VoltageTHDFrequency", "Home")</li>
                     <li><a href="#" data-toggle="modal" data-target="#modal">Info</a></li>
                 </ul>
                 <img class="pull-right" style="height: 50px;" src="@Url.Content("~/Images/epri_04_10_2007.jpg")" />
@@ -70,7 +70,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" style="text-align-last: center">Architecture Info</h4>
+                    <h4 class="modal-title" style="text-align-last: center">Proposed Architecture</h4>
                 </div>
                 <div class="modal-body">
                     <img src="@Url.Content("~/Images/PQMarkOverview.png")"/>

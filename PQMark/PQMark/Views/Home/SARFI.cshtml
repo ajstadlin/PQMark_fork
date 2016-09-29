@@ -47,7 +47,7 @@
 <div class="row">
     <div id="plot"></div>
 </div>
-
+<p>The system average RMS (variation) frequency index, or SARFIX, represents the rate of short-duration RMS events with respect to an RMS voltage threshold (x) that is normalized over 365 days per monitoring site. This chart compares utilities indices to the national benchmark using SARFI10, SARFI50, SARFI70, SARFISEMI, and SARFIITIC indicators.</p>
 @section Scripts
 {
     <script>
@@ -176,7 +176,7 @@
                     //autosize: false,
                     width: $('#viewWindow').innerWidth(),
                     xaxis: { title: 'SARFI Reliability Indices' },
-                    yaxis: { side: 'left', overlaying: 'y', anchor: 'x'},
+                    yaxis: { side: 'left', overlaying: 'y', anchor: 'x', title:'Rate (Normalized to per site per 365 days'},
                     //margin: {
                     //    l: 15,
                     //    r: 15,

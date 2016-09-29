@@ -42,6 +42,8 @@
     <div id="plot"></div>
 </div>
 
+<p>This chart shows the RMS variation magnitude and duration scatter plot for the selected site. Each dot represents an RMS variation event (sag, swell, or transient).  Overlaying the plot are tolerance curves developed by the Information Technology Industry Council (ITIC), and the Semiconductor Equipment and Materials International (SEMI) organization as part of the SEMI F47 standard.  Each curve indicates the threshold at which equipment would continue to operate (above the curve) or fail (below the curve) due to an RMS variation event.</p>
+
 @section Scripts
 {
     <script>
@@ -137,8 +139,8 @@
                     //displayLogo: false,
                     //autosize: false,
                     width: $('#viewWindow').innerWidth(),
-                    xaxis: { title: 'Duration (Seconds)', type: 'log', tickvals: [0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000], range: [-3, 4] },
-                    yaxis: { side: 'left', overlaying: 'y', anchor: 'x', title: 'Remaining RMS Voltage (%)', range: [0, 150] },
+                    xaxis: { title: 'Duration (Seconds)', type: 'log', autorange: false,  autotick: false, tickvals: [0, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000], range: [-3, 4] },
+                    yaxis: { side: 'left', overlaying: 'y', anchor: 'x', title: 'Voltage Magnitude(% of Nominal)' , range: [0, 150] },
                     //margin: {
                     //    l: 15,
                     //    r: 15,
