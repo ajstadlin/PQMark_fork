@@ -73,7 +73,7 @@
                                                             array[d.IndexID - 1] = d.Count;
                                                     });
                                                         
-                                                    var newArray = $.map(array, function (val) { return val / data.length; });
+                                                    var newArray = $.map(array, function (val) { return val / (data.length/ array.length); });
 
                                                     var companyTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: newArray, name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'bar' };
                                                     var benchmarkTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: $.map(benchmarkData, function (val) { return val.Count; }), name: 'Benchmark', type: 'bar' };
@@ -115,7 +115,7 @@
                                         array[d.IndexID - 1] = d.Count;
                                 });
 
-                                var newArray = $.map(array, function (val) { return val / data.length; });
+                                var newArray = $.map(array, function (val) { return val / (data.length / array.length); });
 
                                 var companyTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: newArray, name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'bar' };
                                 var benchmarkTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: $.map(benchmarkData, function (val) { return val.Count; }), name: 'Benchmark', type: 'bar' };
@@ -142,7 +142,7 @@
                                         array[d.IndexID - 1] = d.Count;
                                 });
 
-                                var newArray = $.map(array, function (val) { return val / data.length; });
+                                var newArray = $.map(array, function (val) { return val / (data.length / array.length); });
 
                                 var companyTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: newArray, name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'bar' };
                                 var benchmarkTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: $.map(benchmarkData, function (val) { return val.Count; }), name: 'Benchmark', type: 'bar' };
@@ -176,7 +176,7 @@
                     //autosize: false,
                     width: $('#viewWindow').innerWidth(),
                     xaxis: { title: 'SARFI Reliability Indices' },
-                    yaxis: { side: 'left', overlaying: 'y', anchor: 'x', title:'Rate (Normalized to per site per 365 days'},
+                    yaxis: { side: 'left', overlaying: 'y', anchor: 'x', title:'Rate (Normalized to per site per 365 days)'},
                     //margin: {
                     //    l: 15,
                     //    r: 15,
@@ -184,7 +184,7 @@
                     //    b: 50,
                     //    pad: 15
                     //},
-                    height: $('#viewWindow').height() * 0.85,
+                    height: $('#viewWindow').height() * 0.85
                 };
 
                 Plotly.newPlot('plot', [companyTrace, benchmarkTrace], layout);
@@ -207,7 +207,7 @@
                                         array[d.IndexID - 1] = d.Count;
                                 });
 
-                                var newArray = $.map(array, function (val) { return val / data.length; });
+                                var newArray = $.map(array, function (val) { return val / (data.length / array.length); });
 
                                 var companyTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: newArray, name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'bar' };
                                 var benchmarkTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: $.map(benchmarkData, function (val) { return val.Count; }), name: 'Benchmark', type: 'bar' };

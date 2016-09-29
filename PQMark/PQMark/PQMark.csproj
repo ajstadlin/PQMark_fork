@@ -248,11 +248,13 @@
     <Content Include="Images\PQ Mark Repository 400.png" />
     <Content Include="Images\PQ Mark2_400.png" />
     <Content Include="Images\PQ Mark2_600.png" />
+    <Content Include="Images\PQMark2wPOC600.png" />
     <Content Include="Images\PQMarkOverview.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\PQMark.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\ie10-viewport-bug-workaround.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -262,7 +264,12 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\json2.js" />
+    <Content Include="Scripts\json2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\plotly-1.12.0.js" />
+    <Content Include="Scripts\plotly-1.12.0.min.js" />
+    <Content Include="Scripts\plotly-latest.js" />
     <Content Include="Scripts\PQMark.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -285,6 +292,7 @@
     <Content Include="Views\Home\PQEventMagnitudeDuration.cshtml" />
     <Content Include="Views\Home\VoltageTHDFrequency.cshtml" />
     <Content Include="Views\Home\PQVoltage3D.cshtml" />
+    <Content Include="Scripts\plotly-latest.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

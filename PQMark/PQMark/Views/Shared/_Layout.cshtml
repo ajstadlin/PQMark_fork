@@ -83,10 +83,12 @@
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <script type="text/javascript" src="~/Scripts/jquery.signalR-2.2.1.js"></script>
-    <script src="~/signalr/hubs"></script>
-    <script type="text/javascript" src="~/Scripts/PQMark.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="@Url.Content("~/Scripts/ie10-viewport-bug-workaround.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/json2.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.signalR-2.2.1.js")"></script>
+    <script src="@Url.Content("~/signalr/hubs")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/PQMark.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/plotly-latest.min.js")"></script>
 
     @RenderSection("Scripts", required: false)
 </body>
