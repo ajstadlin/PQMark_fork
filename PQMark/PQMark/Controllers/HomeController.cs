@@ -13,6 +13,12 @@ namespace PQMark.Controllers
             return View();
         }
 
+        public ActionResult Home()
+        {
+            return View();
+        }
+
+
         public ActionResult SARFI()
         {
             ViewBag.Message = "Your application description page.";

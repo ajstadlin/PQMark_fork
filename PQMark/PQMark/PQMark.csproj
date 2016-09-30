@@ -250,6 +250,7 @@
     <Content Include="Images\PQ Mark2_600.png" />
     <Content Include="Images\PQMark2wPOC600.png" />
     <Content Include="Images\PQMarkOverview.png" />
+    <Content Include="Images\SplashScreen.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\PQMark.pubxml" />
@@ -293,6 +294,7 @@
     <Content Include="Views\Home\VoltageTHDFrequency.cshtml" />
     <Content Include="Views\Home\PQVoltage3D.cshtml" />
     <Content Include="Scripts\plotly-latest.min.js" />
+    <Content Include="Views\Home\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
