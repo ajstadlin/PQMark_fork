@@ -30,7 +30,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width"/>
-    <title>Disclaimer</title>
+    <title>PQMark</title>
     <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap.min.css")"></>
 </head>
 <body>
@@ -43,12 +43,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" style="text-align-last: center">Disclaimer</h4>
+                <h4 class="modal-title" style="text-align-last: center">Conditions Of Use</h4>
             </div>
             <div class="modal-body">
                 <p>The PQ-Mark Proof-of-Concept web application is only for the EPRI power quality staff and interested utility advisors who are assessing the value of this concept.</p>
                 <p>This application has been developed to explore the concept of dynamically producing power quality benchmarking charts from a frequently-updated relational data system. If this concept proves successful and work moves forward, the plan is that this web application would be the basis for development of a production web application that would be hosted by EPRI for the benefit of power quality program participants. As an EPRI-hosted web site, the web content in the production application would adhere to EPRI web standards and be seamlessly integrated with other EPRI web content and back-end systems.</p>
                 <p>However, for the purpose of rapid development and cost-minimization during the proof-of-concept phase, the very simple web application that follows is focused on the technical functionality of the data display components and not on the surrounding navigation and graphical elements that are required for a production EPRI web application.</p>
+                <p>This application has not been tested with all browsers.  It has been verified to work with Chrome, Firefox, Opera and IE 11.</p>
                 <p>By clicking below, you acknowledge that (1) you understand all content within the PQ-Mark Proof-of-Concept application is EPRI copyrighted material; (2) that this content it is to be treated as business sensitive information for use by Power Quality Program members and advisors only; and (3) that the power quality data contained within this web application is fabricated and purposely constructed to have no business value.</p>
                 <p>@Html.ActionLink("Click to continue to the PQ-Mark application.", "Index", "Home")</p>
             </div>
