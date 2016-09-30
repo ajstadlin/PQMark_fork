@@ -54,16 +54,16 @@
                     <li>@Html.ActionLink("Steady State", "VoltageTHDFrequency", "Home")</li>
                     <li><a href="#" data-toggle="modal" data-target="#modal">Info</a></li>
                 </ul>
-                <img class="pull-right" style="height: 50px;" src="@Url.Content("~/Images/epri_04_10_2007.jpg")" />
+                @*<img class="pull-right" style="height: 50px;" src="@Url.Content("~/Images/epri_04_10_2007.jpg")" />*@
             </div>
         </div>
     </div>
     <div id="viewWindow" class="container body-content">
         @RenderBody()
-        @*<hr />
+        <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>*@
+            <p style="text-align: center">Proof-of-Concept   -   Copyright &copy; 2016 Electric Power Research Institute.  All Rights Reserved.</p>
+        </footer>
     </div>
 
     <div id="modal" class="modal fade" role="dialog">
