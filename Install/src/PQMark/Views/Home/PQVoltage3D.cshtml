@@ -1,0 +1,227 @@
+﻿@*//******************************************************************************************************
+//  PQVoltage3D.cshtml - Gbtc
+//
+//  Copyright © 2016, Grid Protection Alliance.  All Rights Reserved.
+//
+//  Licensed to the Grid Protection Alliance (GPA) under one or more contributor license agreements. See
+//  the NOTICE file distributed with this work for additional information regarding copyright ownership.
+//  The GPA licenses this file to you under the MIT License (MIT), the "License"; you may
+//  not use this file except in compliance with the License. You may obtain a copy of the License at:
+//
+//      http://opensource.org/licenses/MIT
+//
+//  Unless agreed to in writing, the subject software distributed under the License is distributed on an
+//  "AS-IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. Refer to the
+//  License for the specific language governing permissions and limitations.
+//
+//  Code Modification History:
+//  ----------------------------------------------------------------------------------------------------
+//  09/22/2016 - Billy Ernest
+//       Generated original version of source code.
+//
+//*******************************************************************************************************@
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "PQ Voltage Event 3D Plot";
+
+}
+<div class="row">
+    <div class="col-md-2 pull-left">
+        <select id="companySelect" class="form-control"></select>
+    </div>
+    <div class="col-md-2 pull-right">
+        <select id="siteSelect" class="form-control"></select>
+    </div>
+</div>
+<div class="row">
+    <div id="plot"></div>
+</div>
+<p>This three-dimensional contour chart shows the expected rate (z-axis) of events per site per 365 days at each duration bin (x-axis) and magnitude bin (y-axis).</p>
+@section StyleSheets
+{
+
+}
+
+@section Scripts
+{
+    <script>
+        $(function () {
+            $('#viewWindow').height($(window).innerHeight() - $('#navBar').outerHeight() - $('#companySelect').height());
+            //$('#viewWindow').width('100%');
+            $(document).on('dataHubConnected', function () {
+                dataHub.getCompanyForSelectBox().done(function (companies) {
+                    $.each(companies, function (index, company) {
+                        if (index === 0) {
+                            $('#siteSelect').append(new Option("All Sites", 0));
+                            dataHub.getSiteForSelectBox(company.ID).done(function (sites) {
+                                $.each(sites, function (index2, site) {
+                                    if (index === 0 && index2 === 0) {
+                                        dataHub.getPQEvent3DDataAllSites(company.ID).done(function (data) {
+                                            var companyTrace = { /* x: [], y: [],*/ z: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'surface' };
+                                            for (var i = 0; i < 16; ++i) {
+                                                companyTrace.z.push([]);
+                                                for (var j = 0; j < 9; ++j) {
+                                                    companyTrace.z[i].push(0);
+                                                }
+                                            }
+                                            $.each(data, function (i, d) {
+                                                companyTrace.z[d.DurationID-1][d.VoltageBinID-1] = d.Count;
+                                            });
+                                            makePlot(companyTrace);
+
+
+                                        });
+                                    }
+
+                                    $('#siteSelect').append(new Option(site.Label, site.ID));
+                                });
+                            });
+
+                        }
+
+                        $('#companySelect').append(new Option(company.Label, company.ID));
+                    });
+                });
+            });
+
+
+            $('#companySelect').on('change', function () {
+                dataHub.getSiteForSelectBox($('#companySelect').val()).done(function (sites) {
+                    $('#siteSelect').children().remove();
+                    $('#siteSelect').append(new Option("All Sites", 0));
+
+                    $.each(sites, function (index, site) {
+                        $('#siteSelect').append(new Option(site.Label, site.ID));
+                    });
+                    Plotly.purge('plot');
+                    dataHub.getPQEvent3DDataAllSites($('#companySelect').val()).done(function (data) {
+                        var companyTrace = { /* x: [], y: [],*/ z: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'surface' };
+                        for (var i = 0; i < 16; ++i) {
+                            companyTrace.z.push([]);
+                            for (var j = 0; j < 9; ++j) {
+                                companyTrace.z[i].push(0);
+                            }
+                        }
+                        $.each(data, function (i, d) {
+                            companyTrace.z[d.DurationID - 1][d.VoltageBinID - 1] = d.Count;
+                        });
+                        makePlot(companyTrace);
+
+
+                    });
+
+                });
+
+            });
+
+            $('#siteSelect').on('change', function () {
+                Plotly.purge('plot');
+                if ($('#siteSelect').val() == 0) {
+                    Plotly.purge('plot');
+                    dataHub.getPQEvent3DDataAllSites($('#companySelect').val()).done(function (data) {
+                        var companyTrace = { /* x: [], y: [],*/ z: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'surface' };
+                        for (var i = 0; i < 16; ++i) {
+                            companyTrace.z.push([]);
+                            for (var j = 0; j < 9; ++j) {
+                                companyTrace.z[i].push(0);
+                            }
+                        }
+                        $.each(data, function (i, d) {
+                            companyTrace.z[d.DurationID - 1][d.VoltageBinID - 1] = d.Count;
+                        });
+                        makePlot(companyTrace);
+
+
+                    });
+
+                }
+                else {
+                    Plotly.purge('plot');
+                    dataHub.getPQEvent3DData($('#siteSelect').val()).done(function (data) {
+                        var companyTrace = { /* x: [], y: [],*/ z: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'surface' };
+                        for (var i = 0; i < 16; ++i) {
+                            companyTrace.z.push([]);
+                            for (var j = 0; j < 9; ++j) {
+                                companyTrace.z[i].push(0);
+                            }
+                        }
+                        $.each(data, function (i, d) {
+                            companyTrace.z[d.DurationID - 1][d.VoltageBinID - 1] = d.Count;
+                        });
+                        makePlot(companyTrace);
+
+
+                    });
+
+                }
+            });
+
+            function makePlot(companyTrace) {
+                dataHub.getDurationBins().done(function (durationBins) {
+                    dataHub.getVoltageBins().done(function (voltageBins) {
+                        var layout = {
+                            title: 'Voltage Event (Sag and Interuption) Count by Duration and Voltage Percent',
+                            width: $('#viewWindow').innerWidth(),
+                            scene: {
+                                yaxis: { title: 'Duration', tickangle: 45, tickvals: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], ticktext: $.map(durationBins, function (value) { return value.Label }) },
+                                xaxis: { title: 'Voltage (%)', tickangle: 45, tickvals: [0, 1, 2, 3, 4, 5, 6, 7, 8], ticktext: $.map(voltageBins, function (value) { return value.Label }) },
+                                zaxis: { title: 'Rate' },
+                            },
+                            height: $('#viewWindow').height() * 0.95,
+                        };
+                        Plotly.newPlot('plot', [companyTrace], layout);
+                    });
+                });
+
+            }
+
+            $(window).on('resize', function () {
+                $('#viewWindow').height($(window).innerHeight() - $('#navBar').outerHeight() - $('#companySelect').height());
+
+                Plotly.purge('plot');
+                if ($('#siteSelect').val() == 0) {
+                    Plotly.purge('plot');
+                    dataHub.getPQEvent3DDataAllSites($('#companySelect').val()).done(function (data) {
+                        var companyTrace = { /* x: [], y: [],*/ z: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'surface' };
+                        for (var i = 0; i < 16; ++i) {
+                            companyTrace.z.push([]);
+                            for (var j = 0; j < 9; ++j) {
+                                companyTrace.z[i].push(0);
+                            }
+                        }
+                        $.each(data, function (i, d) {
+                            companyTrace.z[d.DurationID - 1][d.VoltageBinID - 1] = d.Count;
+                        });
+                        makePlot(companyTrace);
+
+
+                    });
+                }
+                else {
+                    Plotly.purge('plot');
+                    dataHub.getPQEvent3DData($('#siteSelect').val()).done(function (data) {
+                        var companyTrace = { /* x: [], y: [],*/ z: [], name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'surface' };
+                        for (var i = 0; i < 16; ++i) {
+                            companyTrace.z.push([]);
+                            for (var j = 0; j < 9; ++j) {
+                                companyTrace.z[i].push(0);
+                            }
+                        }
+                        $.each(data, function (i, d) {
+                            companyTrace.z[d.DurationID - 1][d.VoltageBinID - 1] = d.Count;
+                        });
+                        makePlot(companyTrace);
+
+
+                    });
+
+                }
+
+            });
+        });
+</script>
+}
+
+

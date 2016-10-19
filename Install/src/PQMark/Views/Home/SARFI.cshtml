@@ -1,0 +1,239 @@
+﻿@*//******************************************************************************************************
+//  SARFI.cshtml - Gbtc
+//
+//  Copyright © 2016, Grid Protection Alliance.  All Rights Reserved.
+//
+//  Licensed to the Grid Protection Alliance (GPA) under one or more contributor license agreements. See
+//  the NOTICE file distributed with this work for additional information regarding copyright ownership.
+//  The GPA licenses this file to you under the MIT License (MIT), the "License"; you may
+//  not use this file except in compliance with the License. You may obtain a copy of the License at:
+//
+//      http://opensource.org/licenses/MIT
+//
+//  Unless agreed to in writing, the subject software distributed under the License is distributed on an
+//  "AS-IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. Refer to the
+//  License for the specific language governing permissions and limitations.
+//
+//  Code Modification History:
+//  ----------------------------------------------------------------------------------------------------
+//  09/22/2016 - Billy Ernest
+//       Generated original version of source code.
+//
+//*******************************************************************************************************@
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "SARFI";
+
+}
+
+@section StyleSheets
+{
+    <style>
+        #plot {
+            text-align: center;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-2 pull-left">
+        <select id="companySelect" class="form-control"></select>
+    </div>
+    <div class="col-md-2 pull-right">
+        <select id="siteSelect" class="form-control"></select>
+    </div>
+</div>
+<div class="row">
+    <div id="plot"></div>
+</div>
+<p>The system average RMS (variation) frequency index, or SARFIX, represents the rate of short-duration RMS events with respect to an RMS voltage threshold (x) that is normalized over 365 days per monitoring site. This chart compares utilities indices to the national benchmark using SARFI<sub>10</sub>, SARFI<sub>50</sub>, SARFI<sub>70</sub>, SARFI<sub>SEMI</sub>, and SARFI<sub>ITIC</sub> indicators.</p>
+@section Scripts
+{
+    <script>
+        $(function () {
+            $('#viewWindow').height($(window).innerHeight() - $('#navBar').outerHeight() - $('#companySelect').height());
+            //$('#viewWindow').width('100%');
+            $(document).on('dataHubConnected', function () {
+                dataHub.getCompanyForSelectBox().done(function (companies) {
+                    $.each(companies, function (index, company) {
+                        if (index === 0) {
+                            $('#siteSelect').append(new Option("All Sites", 0));
+                            dataHub.getSiteForSelectBox(company.ID).done(function (sites) {
+                                $.each(sites, function (index2, site) {
+                                    if (index === 0 && index2 === 0) {
+                                        dataHub.getSARFIDataAllSites(company.ID).done(function (data) {
+                                            dataHub.getSARFIBenchmarkData().done(function (benchmarkData) {
+                                                dataHub.getSARFIIndex().done(function (sarfiIndex) {
+                                                    array = [];
+                                                    $.each(data, function (i, d) {
+                                                        if (array[d.IndexID - 1] !== undefined)
+                                                            array[d.IndexID - 1] += d.Count;
+                                                        else
+                                                            array[d.IndexID - 1] = d.Count;
+                                                    });
+                                                        
+                                                    var newArray = $.map(array, function (val) { return val / (data.length/ array.length); });
+
+                                                    var companyTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: newArray, name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'bar' };
+                                                    var benchmarkTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: $.map(benchmarkData, function (val) { return val.Count; }), name: 'Benchmark', type: 'bar' };
+                                                    makePlot(companyTrace, benchmarkTrace);
+                                                });
+                                            });
+                                        });
+                                    }
+
+                                    $('#siteSelect').append(new Option(site.Label, site.ID));
+                                });
+                            });
+
+                        }
+
+                        $('#companySelect').append(new Option(company.Label, company.ID));
+                    });
+                });
+            });
+            
+            
+            $('#companySelect').on('change', function () {
+                dataHub.getSiteForSelectBox($('#companySelect').val()).done(function (sites) {
+                    $('#siteSelect').children().remove();
+                    $('#siteSelect').append(new Option("All Sites", 0));
+
+                    $.each(sites, function (index, site) {
+                        $('#siteSelect').append(new Option(site.Label, site.ID));
+                    });
+                    Plotly.purge('plot');
+                    dataHub.getSARFIDataAllSites($('#companySelect').val()).done(function (data) {
+                        dataHub.getSARFIBenchmarkData().done(function (benchmarkData) {
+                            dataHub.getSARFIIndex().done(function (sarfiIndex) {
+                                array = [];
+                                $.each(data, function (i, d) {
+                                    if (array[d.IndexID - 1] !== undefined)
+                                        array[d.IndexID - 1] += d.Count;
+                                    else
+                                        array[d.IndexID - 1] = d.Count;
+                                });
+
+                                var newArray = $.map(array, function (val) { return val / (data.length / array.length); });
+
+                                var companyTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: newArray, name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'bar' };
+                                var benchmarkTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: $.map(benchmarkData, function (val) { return val.Count; }), name: 'Benchmark', type: 'bar' };
+                                makePlot(companyTrace, benchmarkTrace);
+                            });
+                        });
+                    });
+
+                });
+
+            });
+            
+            $('#siteSelect').on('change', function () {
+                Plotly.purge('plot');
+                if ($('#siteSelect').val() == 0) {
+                    dataHub.getSARFIDataAllSites($('#companySelect').val()).done(function (data) {
+                        dataHub.getSARFIBenchmarkData().done(function (benchmarkData) {
+                            dataHub.getSARFIIndex().done(function (sarfiIndex) {
+                                array = [];
+                                $.each(data, function (i, d) {
+                                    if (array[d.IndexID - 1] !== undefined)
+                                        array[d.IndexID - 1] += d.Count;
+                                    else
+                                        array[d.IndexID - 1] = d.Count;
+                                });
+
+                                var newArray = $.map(array, function (val) { return val / (data.length / array.length); });
+
+                                var companyTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: newArray, name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'bar' };
+                                var benchmarkTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: $.map(benchmarkData, function (val) { return val.Count; }), name: 'Benchmark', type: 'bar' };
+                                makePlot(companyTrace, benchmarkTrace);
+                            });
+                        });
+                    });
+                }
+                else {
+                    dataHub.getSARFIData($('#siteSelect').val()).done(function (data) {
+                        dataHub.getSARFIBenchmarkData().done(function (benchmarkData) {
+                            dataHub.getSARFIIndex().done(function (sarfiIndex) {
+
+                                var companyTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: $.map(data, function (val) { return val.Count; }), name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'bar' };
+                                var benchmarkTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: $.map(benchmarkData, function (val) { return val.Count; }), name: 'Benchmark', type: 'bar' };
+                                makePlot(companyTrace, benchmarkTrace);
+                            });
+                        });
+                    });
+
+                }
+
+            });
+
+            function makePlot(companyTrace, benchmarkTrace) {
+                var layout = {
+                    barmode: 'group',
+                    title: 'System Average RMS-Variation Frequency Index (SARFI) Events',
+                    //showLink: false,
+                    //displayLogo: false,
+                    //autosize: false,
+                    width: $('#viewWindow').innerWidth(),
+                    xaxis: { title: 'SARFI Reliability Indices' },
+                    yaxis: { side: 'left', overlaying: 'y', anchor: 'x', title:'Rate (Normalized to per site per 365 days)'},
+                    //margin: {
+                    //    l: 15,
+                    //    r: 15,
+                    //    t: 50,
+                    //    b: 50,
+                    //    pad: 15
+                    //},
+                    height: $('#viewWindow').height() * 0.85
+                };
+
+                Plotly.newPlot('plot', [companyTrace, benchmarkTrace], layout);
+
+            }
+            
+            $(window).on('resize', function () {
+                $('#viewWindow').height($(window).innerHeight() - $('#navBar').outerHeight() - $('#companySelect').height());
+
+                Plotly.purge('plot');
+                if ($('#siteSelect').val() == 0) {
+                    dataHub.getSARFIDataAllSites($('#companySelect').val()).done(function (data) {
+                        dataHub.getSARFIBenchmarkData().done(function (benchmarkData) {
+                            dataHub.getSARFIIndex().done(function (sarfiIndex) {
+                                array = [];
+                                $.each(data, function (i, d) {
+                                    if (array[d.IndexID - 1] !== undefined)
+                                        array[d.IndexID - 1] += d.Count;
+                                    else
+                                        array[d.IndexID - 1] = d.Count;
+                                });
+
+                                var newArray = $.map(array, function (val) { return val / (data.length / array.length); });
+
+                                var companyTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: newArray, name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'bar' };
+                                var benchmarkTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: $.map(benchmarkData, function (val) { return val.Count; }), name: 'Benchmark', type: 'bar' };
+                                makePlot(companyTrace, benchmarkTrace);
+                            });
+                        });
+                    });
+                }
+                else {
+                    dataHub.getSARFIData($('#siteSelect').val()).done(function (data) {
+                        dataHub.getSARFIBenchmarkData().done(function (benchmarkData) {
+                            dataHub.getSARFIIndex().done(function (sarfiIndex) {
+
+                                var companyTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: $.map(data, function (val) { return val.Count; }), name: $('#companySelect option:selected').text() + ' - ' + $('#siteSelect option:selected').text(), type: 'bar' };
+                                var benchmarkTrace = { x: $.map(sarfiIndex, function (val) { return val.Name; }), y: $.map(benchmarkData, function (val) { return val.Count; }), name: 'Benchmark', type: 'bar' };
+                                makePlot(companyTrace, benchmarkTrace);
+                            });
+                        });
+                    });
+
+                }
+
+
+            });
+        });
+    </script>
+}
+
+

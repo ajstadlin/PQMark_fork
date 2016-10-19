@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension" xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension">
+    <Product Id="*" Name="PQMark" Language="1033" Version="0.0.1.1" Manufacturer="Grid Protection Alliance" UpgradeCode="{C7825D50-2D3F-45C7-8FAF-D58C96A4E864}">
+        <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+        <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+        <MediaTemplate EmbedCab="yes" />
+
+        <PropertyRef Id="WIX_IS_NETFRAMEWORK_46_OR_LATER_INSTALLED"/>
+        <Condition Message='This setup requires Microsoft .NET Framework 4.6 or greater - this will need to be installed before installation can continue.'>
+            <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_46_OR_LATER_INSTALLED]]>
+        </Condition>
+
+        <Feature Id="AllSites" Title="All Websites" Level="1" Display="expand" Description="All websites in the PQMark installation.">
+            <!-- PQMark -->
+            <Feature Id="PQMarkFeature" Title="PQMark" AllowAdvertise="no" Description="Installs the PQMark website for visualization of power quality data." ConfigurableDirectory="PQMARKFOLDER">
+                <ComponentGroupRef Id="PQMarkGroup" />
+            </Feature>
+        </Feature>
+
+        <UI>
+            <!-- User Interface -->
+            <UIRef Id="WixUI_FeatureTree" />
+            <UIRef Id="WixUI_ErrorProgressText" />
+            <DialogRef Id="DatabaseConnectionDialog" />
+            
+            <Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="DatabaseConnectionDialog">NOT Installed</Publish>
+            <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="DatabaseConnectionDialog">NOT Installed</Publish>
+            
+            <!--
+            <Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="DatabaseConnectionDialog">NOT Installed</Publish>
+            <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="DatabaseConnectionDialog">NOT Installed</Publish>
+            -->
+        </UI>
+        
+		<Icon Id="PQMark.ico" SourceFile="src/PQMark.ico" />
+        
+        <Property Id="WWWROOTDIR">
+            <RegistrySearch Id="FindInetPubFolder" Root="HKLM" Key="SOFTWARE\Microsoft\InetStp" Name="PathWWWRoot" Type="directory" />
+        </Property>
+        
+        <Property Id="SERVERNAME" Value="localhost" />
+        <Property Id="WINDOWSAUTH" Value="1" />
+        <Property Id="DATAPROVIDERSTRING" Value="AssemblyName={System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089};; ConnectionType=System.Data.SqlClient.SqlConnection;; AdapterType=System.Data.SqlClient.SqlDataAdapter" />
+        <SetProperty Id="DATABASENAME" Value="PQMark" After="LaunchConditions" Sequence="first" />
+        <SetProperty Id="SCRIPTPATH" Value="[INSTALLFOLDER]\pqmark.sql" After="LaunchConditions" Sequence="execute" />
+        <SetProperty Id="PQMARKURL" Value="http://localhost/PQMark/" Before="CreateShortcuts" Sequence="execute" />
+		
+		<!--
+        <WixVariable Id="WixUIBannerBmp" Value="src\PQMark SetupLogo.bmp" />
+        <WixVariable Id="WixUIDialogBmp" Value="src\InstallWelcome.bmp" />
+		-->
+		
+        <WixVariable Id="WixUILicenseRtf" Value="src\INSTALL_LICENSE.rtf" />
+        
+        <!-- Web Site -->
+        <iis:WebSite Id="DefaultWebSite" Description="Default Web Site" Directory="WWWROOTDIR">
+            <iis:WebAddress Id="AllUnassigned" Port="80" />
+        </iis:WebSite>
+    
+        <!-- Add/Remove Programs Properties -->
+        <Property Id="ARPPRODUCTICON" Value="PQMark.ico" />
+        <Property Id="ARPNOREPAIR" Value="yes" Secure="yes" />
+        <Property Id="ARPNOMODIFY" Value="yes" Secure="yes" />
+        
+        <!-- Custom Actions -->
+        <Binary Id="InstallerActions" SourceFile="src\GSF.InstallerActions.CA.dll" />
+        <CustomAction Id="TestDatabaseConnectionAction" BinaryKey="InstallerActions" DllEntry="TestDatabaseConnectionAction" Execute="immediate" />
+		<CustomAction Id="RunSqlQuery.SetProperty" Property="RunSqlQuery" Value="SERVICENAME=PQMark;CONNECTIONSTRING=[SERVERCONNECTIONSTRING];DATAPROVIDERSTRING=[DATAPROVIDERSTRING];DBQUERY=[CREATEDATABASE]" />
+        <CustomAction Id="RunSqlQuery" BinaryKey="InstallerActions" DllEntry="DatabaseQueryAction" Execute="deferred" Impersonate="yes"/>
+
+		<CustomAction Id="RunSqlScript.SetProperty" Property="RunSqlScript" Value="SERVICENAME=PQMark;CONNECTIONSTRING=[DBCONNECTIONSTRING];DATAPROVIDERSTRING=[DATAPROVIDERSTRING];SCRIPTPATH=[#pqmark.sql]" />
+        <CustomAction Id="RunSqlScript" BinaryKey="InstallerActions" DllEntry="DatabaseScriptAction" Execute="deferred" Impersonate="yes"/>
+		
+		<InstallExecuteSequence>
+		  <Custom Action="RunSqlQuery.SetProperty" After="InstallFiles">NOT REMOVE AND DBSERVERCONNECTS AND NOT DBEXISTS</Custom>
+		  <Custom Action="RunSqlQuery" After="RunSqlQuery.SetProperty">NOT REMOVE AND DBSERVERCONNECTS AND NOT DBEXISTS</Custom>
+		  <Custom Action="RunSqlScript.SetProperty" After="RunSqlQuery">NOT REMOVE AND DBSERVERCONNECTS AND NOT DBEXISTS</Custom>
+		  <Custom Action="RunSqlScript" After="RunSqlScript.SetProperty">NOT REMOVE AND DBSERVERCONNECTS AND NOT DBEXISTS</Custom>
+		</InstallExecuteSequence>
+
+    </Product>
+
+    <Fragment>
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="INETPUBDIR" Name="inetpub">
+                <Directory Id="WWWROOTDIR" Name="wwwroot">
+                    <Directory Id="PQMARKFOLDER" Name="PQMark">
+                    </Directory>
+                </Directory>
+            </Directory>
+
+            <Directory Id="ProgramMenuFolder">
+                <Directory Id="ApplicationProgramsFolder" Name="PQMark" />
+            </Directory>
+        </Directory>
+    </Fragment>
+    
+    <Fragment>
+        <DirectoryRef Id="PQMARKFOLDER">
+            <Component Id="PQMarkConnectionString" Guid="{0369FEA2-33FF-4D99-8835-494B080FDAFB}" KeyPath="yes">
+                <util:XmlFile Id="SetPQMarkConnectionString" Action="setValue" ElementPath="/configuration/categorizedSettings/systemSettings/add[\[]@name='ConnectionString'[\]]/@value" Value="[PQMARKCONNECTIONSTRING]" File="[#filB86789418423F72C4BB7A9217E1CBEB6]" SelectionLanguage="XPath" Sequence="1" />
+            </Component>
+            
+            <Component Id="InstallPQMarkSite" Guid="{C73A8977-9C77-41A4-9656-38E0934CC5B4}" KeyPath="yes">
+                <iis:WebVirtualDir Id="PQMarkVirtualDir" Alias="PQMark" Directory="PQMARKFOLDER" WebSite="DefaultWebSite">
+                    <iis:WebApplication Id="PQMarkApplication" Name="PQMark" />
+                    <iis:WebDirProperties Id="PQMarkProperties" AnonymousAccess="yes" WindowsAuthentication="no" />
+                </iis:WebVirtualDir>
+            </Component>
+            
+            <Component Id="PQMarkShortcutComponent" Guid="{A3F0BFE7-A72E-4D78-8A28-CA49056E14BB}">
+                <Shortcut Id="PQMarkStartMenuShortcut" Directory="ApplicationProgramsFolder" Name="PQMark" Icon="PQMark.ico" Description="URL to the PQMark website." Target="[PQMARKURL]" />
+                <RegistryValue Root="HKLM" Key="SOFTWARE\EPRI\PQMark" Name="PQMarkShortcut" Type="string" Value="" KeyPath="yes" />
+            </Component>
+			
+			<Component Id="PQMarkSqlScript" Guid="{F53CF579-B141-4F35-992B-6D5827CF5B46}">
+				<File Id="pqmark.sql" Name="pqmark.sql" Source="src/pqmark.sql" />
+            </Component>
+
+        </DirectoryRef>
+    </Fragment>
+    
+    <Fragment>
+        <ComponentGroup Id="PQMarkGroup">
+            <ComponentGroupRef Id="PQMarkFiles" />
+            <ComponentRef Id="PQMarkConnectionString" />
+            <ComponentRef Id="InstallPQMarkSite" />
+            <ComponentRef Id="PQMarkShortcutComponent" />
+			<ComponentRef Id="PQMarkSqlScript" />
+            <ComponentGroupRef Id="Cleanup" />
+        </ComponentGroup>
+        
+        <ComponentGroup Id="Cleanup" Directory="PQMARKFOLDER">
+            <Component Id="Cleanup" Guid="{0A8DEA19-E4E4-4C1E-99CE-219066040DC0}">
+                <CreateFolder />
+                <RemoveFolder Id="ApplicationProgramsFolder" Directory="ApplicationProgramsFolder" On="uninstall" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+
+    <!-- Custom Dialogs -->
+    <Fragment>
+        <UI>
+            <!-- Database Connection Dialog -->
+            <Dialog Id="DatabaseConnectionDialog" Width="370" Height="270" Title="PQMark Setup">
+                <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="WixUI_Bmp_Banner" />
+                <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Transparent="yes" NoPrefix="yes">
+                    <Text>{\WixUI_Font_Title}Database Connection</Text>
+                </Control>
+                <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Transparent="yes" NoPrefix="yes">
+                    <Text>Configure your database connection.</Text>
+                </Control>
+                <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+                <Control Id="ServerNameLabel" Type="Text" X="95" Y="53" Width="100" Height="13" TabSkip="no" Text="&amp;Server name:" />
+                <Control Id="ServerNameEdit" Type="Edit" X="95" Y="65" Width="170" Height="18" Property="SERVERNAME" Text="{80}" />
+                <Control Id="DatabaseNameLabel" Type="Text" X="95" Y="88" Width="100" Height="13" TabSkip="no" Text="&amp;Database name:" />
+                <Control Id="DatabaseNameEdit" Type="Edit" X="95" Y="100" Width="170" Height="18" Property="DATABASENAME" Text="{80}" />
+				
+                <Control Id="WindowsAuthenticationCheckBox" Type="CheckBox" X="85" Y="125" Width="200" Height="17" Property="WINDOWSAUTH" CheckBoxValue="1" Text="Use Windows Authentication" />
+                <Control Id="UsernameLabel" Type="Text" X="95" Y="143" Width="100" Height="13" TabSkip="no" Text="&amp;Username:">
+                    <Condition Action="enable">NOT WINDOWSAUTH</Condition>
+                    <Condition Action="disable">WINDOWSAUTH</Condition>
+                </Control>
+                <Control Id="UsernameEdit" Type="Edit" X="95" Y="155" Width="170" Height="18" Property="DBUSERNAME" Text="{80}">
+                    <Condition Action="enable">NOT WINDOWSAUTH</Condition>
+                    <Condition Action="disable">WINDOWSAUTH</Condition>
+                </Control>
+                <Control Id="PasswordLabel" Type="Text" X="95" Y="178" Width="100" Height="13" TabSkip="no" Text="&amp;Password:">
+                    <Condition Action="enable">NOT WINDOWSAUTH</Condition>
+                    <Condition Action="disable">WINDOWSAUTH</Condition>
+                </Control>
+                <Control Id="PasswordEdit" Type="Edit" X="95" Y="190" Width="170" Height="18" Property="DBPASSWORD" Text="{80}" Password="yes">
+                    <Condition Action="enable">NOT WINDOWSAUTH</Condition>
+                    <Condition Action="disable">WINDOWSAUTH</Condition>
+                </Control>
+                <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+                <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="&amp;Back">
+                    <!--<Publish Event="NewDialog" Value="DependenciesDialog"><![CDATA[&PQMarkFeature=3]]></Publish>-->
+                    <Publish Event="NewDialog" Value="CustomizeDlg">1</Publish>
+                </Control>
+                <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="&amp;Next">
+                    <!-- Set up the authentication part of the connection string based on user input. -->
+                    <Publish Property="AUTHSTRING" Value="Integrated Security=SSPI">WINDOWSAUTH</Publish>
+                    <Publish Property="AUTHSTRING" Value="User Id=[DBUSERNAME];;Password=[DBPASSWORD]">NOT WINDOWSAUTH</Publish>
+                    
+                    <!-- Set up the queries to create the database user. -->
+					<Publish Property="CREATEDATABASE" Value="CREATE DATABASE [\[][DATABASENAME][\]]">1</Publish>
+					<!--
+                    <Publish Property="GENPASSWORDLENGTH" Value="20">1</Publish>
+                    <Publish Event="DoAction" Value="PasswordGenerationAction">NOT DASHBOARDDBPASSWORD</Publish>
+                    <Publish Property="DASHBOARDDBLOGIN" Value="PQMark">1</Publish>
+                    <Publish Property="DASHBOARDDBPASSWORD" Value="[GENERATEDPASSWORD]">NOT DASHBOARDDBPASSWORD</Publish>
+                    -->
+					
+                    <!-- Set up connection strings for connecting to server and database. -->
+                    <Publish Property="SERVERCONNECTIONSTRING" Value="Data Source=[SERVERNAME];;[AUTHSTRING]">1</Publish>
+                    <Publish Property="DBCONNECTIONSTRING" Value="Data Source=[SERVERNAME];;Initial Catalog=[DATABASENAME];;[AUTHSTRING]">1</Publish>
+                    <Publish Property="PQMARKCONNECTIONSTRING" Value="Data Source=[SERVERNAME];Initial Catalog=[DATABASENAME];User Id=EPRI;Password=1234">1</Publish>
+                    
+                    <!-- Determine whether we can connect to the database server. -->
+                    <Publish Property="CONNECTIONSTRING" Value="[SERVERCONNECTIONSTRING];;Connection Timeout=5">1</Publish>
+                    <Publish Event="DoAction" Value="TestDatabaseConnectionAction">1</Publish>
+                    <Publish Property="DBSERVERCONNECTS">NOT DATABASECONNECTED</Publish>
+                    <Publish Property="DBSERVERCONNECTS" Value="1">DATABASECONNECTED</Publish>
+                    <Publish Property="ERRORMESSAGE" Value="Unable to connect to the database server. Please verify the connection configuration and try again.">NOT DBSERVERCONNECTS</Publish>
+                    <Publish Event="SpawnDialog" Value="ModalErrorDialog">NOT DBSERVERCONNECTS</Publish>
+                    
+                    <!-- Determine whether the database already exists on the server. -->
+                    <Publish Property="CONNECTIONSTRING" Value="[DBCONNECTIONSTRING];;Connection Timeout=5">DBSERVERCONNECTS</Publish>
+                    <Publish Event="DoAction" Value="TestDatabaseConnectionAction">DBSERVERCONNECTS</Publish>
+                    <Publish Property="DBEXISTS">NOT DATABASECONNECTED</Publish>
+                    <Publish Property="DBEXISTS" Value="1">DATABASECONNECTED</Publish>
+                    <Publish Property="ERRORMESSAGE" Value="Database [DATABASENAME] already exist on the server. Plese use a different name.">DBSERVERCONNECTS AND DBEXISTS</Publish>
+                    <Publish Event="SpawnDialog" Value="ModalErrorDialog">DBSERVERCONNECTS AND DBEXISTS</Publish>
+
+                    <!-- Move to the next dialog if the validation checks out. -->
+                    <Publish Event="NewDialog" Value="VerifyReadyDlg">DBSERVERCONNECTS AND NOT DBEXISTS</Publish>
+                </Control>
+                <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="Cancel">
+                    <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+                </Control>
+            </Dialog>
+
+            <!-- Modal dialog to display error messages. -->
+            <Dialog Id="ModalErrorDialog" Width="220" Height="100" Title="Database Connection Error">
+                <Control Id="ErrorMessageLabel" Type="Text" X="30" Y="15" Width="160" Height="40" TabSkip="no" Text="[ERRORMESSAGE]" />
+                <Control Id="OKButton" Type="PushButton" X="82" Y="70" Width="56" Height="17" Default="yes" Cancel="yes" Text="&amp;OK">
+                    <Publish Event="EndDialog" Value="Return">1</Publish>
+                </Control>
+            </Dialog>
+        </UI>
+    </Fragment>
+</Wix>
