@@ -35,6 +35,8 @@
     @RenderSection("StyleSheets", required: false)
     @Scripts.Render("~/bundles/modernizr")
 
+    
+
 </head>
 <body>
 @*<header>
@@ -73,16 +75,17 @@
 
         @*<p class="salutation">
             <strong>Welcome David Hasselberg</strong>
-        </p>
+        </p>*@
 
 
         <div class="nav_pre nav">
             <ul>
-                <li><a title="Utility Link" href="#">Utility Link</a></li>
-                <li><a title="Utility Link" href="#">Utility Link</a></li>
-                <li><a title="Utility Link" href="#">Utility Link</a></li>
+                @*<li><a title="Utility Link" href="https://login.epri.com/login.aspx" target="_blank">Login</a></li>*@
+                <li><a title="Utility Link" href="https://login.epri.com/login.aspx" target="_blank">Log Off</a></li>
+                <li><a title="Utility Link" href="https://www.epri.com/" target="_blank">EPRI.com</a></li>
+
             </ul>
-        </div>*@
+        </div>
 
         <h2 class="site_subtitle">PQMark</h2>
 
@@ -121,7 +124,9 @@
 <div id="viewWindow" class="container body-content">
     @RenderBody()
 </div>
-<div class="footer">
+
+@Html.Raw(ViewBag.Footer)
+@*<div class="footer">
     <hr />
 
     <div class="nav_post nav">
@@ -136,7 +141,7 @@
     <p>800.313.3774 or 650.855.2121</p>
     <address>EPRI 3420 Hillview Avenue, Palo Alto, California 94304</address>
     <p>&copy; Electric Power Research Institute, Inc. 2001-2013 All rights reserved</p>
-</div>
+</div>*@
 
 
 <div id="modal" class="modal fade" role="dialog">
