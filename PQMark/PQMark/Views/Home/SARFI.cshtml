@@ -52,6 +52,8 @@
 {
     <script>
         $(function () {
+            $('#breadcrumbText').text("SARFI");
+
             $('#viewWindow').height($(window).innerHeight() - $('#navBar').outerHeight() - $('#companySelect').height());
             //$('#viewWindow').width('100%');
             $(document).on('dataHubConnected', function () {

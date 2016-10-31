@@ -47,6 +47,8 @@
 {
     <script>
         $(function () {
+            $('#breadcrumbText').text("Steady State");
+
             $('#viewWindow').height($(window).innerHeight() - $('#navBar').outerHeight() - $('#companySelect').height());
             //$('#viewWindow').width('100%');
             $(document).on('dataHubConnected', function () {
