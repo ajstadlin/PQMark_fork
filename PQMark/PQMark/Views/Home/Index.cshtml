@@ -1,5 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home";
+    ViewBag.Navbar = "Home";
+
 }
 <div style="">
     <div style="width: 100%; text-align: center; margin-top: 5%; margin-bottom: 5%">
@@ -15,3 +17,15 @@
     </div>
 
 </div>
+@section Scripts{
+  <script>
+    $(function () {
+        //$('#splashScreen').height($(window).innerHeight());
+        //$('#splashScreen').width($(window).width()*.8);
+        $('#breadcrumbText').text("Home");
+        $(window).resize(function () {
+        });
+    });
+</script>
+  
+}

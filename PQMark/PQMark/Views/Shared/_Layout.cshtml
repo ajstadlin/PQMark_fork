@@ -164,6 +164,13 @@
 <script src="@Url.Content("~/signalr/hubs")"></script>
 <script type="text/javascript" src="@Url.Content("~/Scripts/PQMark.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Scripts/plotly-latest.min.js")"></script>
+<script>
+    $(function () {
+        $('.nav_main li').removeClass('nav_active');
+
+        $('.nav_main li:contains(@ViewBag.Navbar)').addClass('nav_active');
+    })
+</script>
 
 @RenderSection("Scripts", required: false)
 </body>
