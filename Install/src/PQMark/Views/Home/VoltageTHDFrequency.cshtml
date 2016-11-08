@@ -24,6 +24,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Voltage THD Frequency Distrobution";
+    ViewBag.Navbar = "Steady State";
 }
 
 @section StyleSheets
@@ -47,6 +48,8 @@
 {
     <script>
         $(function () {
+            $('#breadcrumbText').text("Steady State");
+
             $('#viewWindow').height($(window).innerHeight() - $('#navBar').outerHeight() - $('#companySelect').height());
             //$('#viewWindow').width('100%');
             $(document).on('dataHubConnected', function () {

@@ -2,350 +2,362 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
     <Fragment>
         <DirectoryRef Id="PQMARKFOLDER">
-            <Component Id="cmpB5C57B1A4AA5D7A48D020C2244091807" Guid="{DCAA7A0B-9438-4770-8931-289B38F422E0}">
+            <Component Id="cmpB5C57B1A4AA5D7A48D020C2244091807" Guid="{26458848-384D-48B1-87E0-DCED313A764C}">
                 <File Id="fil35CD6F2A1EC28C4F0A5E6D6D675EF6D8" KeyPath="yes" Source="$(var.PQMarkSource)\favicon.ico" />
             </Component>
-            <Component Id="cmp5391EEA9F6C48AD4C2A02D2A0F75B388" Guid="{43AF379B-DC40-4EBF-BF8C-D8659865D936}">
+            <Component Id="cmp5391EEA9F6C48AD4C2A02D2A0F75B388" Guid="{07AEE4D1-CFE7-4D04-A1DA-9C638D2477C4}">
                 <File Id="fil1A4CB8AAB170331BA4E056B63D92DE13" KeyPath="yes" Source="$(var.PQMarkSource)\packages.config" />
             </Component>
-            <Component Id="cmpDCF8A3A6DE4EBB7D6356D22B92C8F2FC" Guid="{36406645-6A4E-44C2-A23E-A16849029703}">
+            <Component Id="cmpDCF8A3A6DE4EBB7D6356D22B92C8F2FC" Guid="{4A55AB17-B44D-43C4-A9A0-605FE3C1FF49}">
                 <File Id="filC88B1496483ED62083D322520E345CFA" KeyPath="yes" Source="$(var.PQMarkSource)\PrecompiledApp.config" />
             </Component>
-            <Component Id="cmp00EB504571FF6B76D331C38A2FF2A622" Guid="{41E44622-D2C7-4D2E-96B6-F924A7F57BE5}">
+            <Component Id="cmp00EB504571FF6B76D331C38A2FF2A622" Guid="{2B564154-9C94-4F13-8926-11FCD81EB2B4}">
                 <File Id="filB86789418423F72C4BB7A9217E1CBEB6" KeyPath="yes" Source="$(var.PQMarkSource)\Web.config" />
             </Component>
             <Directory Id="dirDE181835F780C2EBD0CA66E9F30E7BA4" Name="bin">
-                <Component Id="cmpEA083B62394DED3A2BF6F0E03C060161" Guid="{7F77636D-89BF-4F8D-9173-360AD2DE52FF}">
+                <Component Id="cmpEA083B62394DED3A2BF6F0E03C060161" Guid="{6CFAB429-1809-44F4-B97E-EFF7CD1B8486}">
                     <File Id="filC79600E5012F9B328721A8FB9BA300C1" KeyPath="yes" Source="$(var.PQMarkSource)\bin\AjaxMin.dll" />
                 </Component>
-                <Component Id="cmp049689A74F4C905405E9B57FCABB0CB5" Guid="{7DCCDA5B-041F-490E-B9D5-31E83985AB3B}">
+                <Component Id="cmp049689A74F4C905405E9B57FCABB0CB5" Guid="{7CA5B50F-6CA6-43C8-9098-19984AAAC2C7}">
                     <File Id="fil7D2B6C265CF688A3754081BABF40DE05" KeyPath="yes" Source="$(var.PQMarkSource)\bin\Antlr3.Runtime.dll" />
                 </Component>
-                <Component Id="cmp7AEC318FC89C1179D4D081B7794120DC" Guid="{07E3B9D0-EB54-4FEF-8ACA-4A0802C5F87F}">
+                <Component Id="cmp7AEC318FC89C1179D4D081B7794120DC" Guid="{EA84C970-06BF-44E5-B6B5-4BA04C5A022A}">
                     <File Id="filA064D8B03E448EAC36CDF6E6AE6B27AD" KeyPath="yes" Source="$(var.PQMarkSource)\bin\App_global.asax.compiled" />
                 </Component>
-                <Component Id="cmpF651C98E000F8DB78DB2F595DB63CC4A" Guid="{487E4C6F-CFAB-4735-9274-FCF5F521C5BF}">
+                <Component Id="cmpF651C98E000F8DB78DB2F595DB63CC4A" Guid="{87E92D33-DC98-4FCA-988E-F8B4EACBB3E9}">
                     <File Id="fil7FFDFC6A01C93309F55CD712352FC852" KeyPath="yes" Source="$(var.PQMarkSource)\bin\App_global.asax.dll" />
                 </Component>
-                <Component Id="cmp283ADE3CB9432FE5ED76E21E0E4CC349" Guid="{1939CB4F-3366-4A0D-A811-0F8CF6446C91}">
+                <Component Id="cmp283ADE3CB9432FE5ED76E21E0E4CC349" Guid="{AA1CB53E-8F3A-4675-979F-4FB7FDE370AA}">
                     <File Id="filD9B20EAE293C4EB647C8C970B2F5F751" KeyPath="yes" Source="$(var.PQMarkSource)\bin\EntityFramework.dll" />
                 </Component>
-                <Component Id="cmp8D033C3C52A492F98CC2C7E9A73F6EB6" Guid="{A556DF1F-DE25-49A4-8341-583B092A87E0}">
+                <Component Id="cmp8D033C3C52A492F98CC2C7E9A73F6EB6" Guid="{83F74D79-E8BE-47CD-8A0F-96242385B6D3}">
                     <File Id="fil1306EC09D8B482718E05A178F05BD658" KeyPath="yes" Source="$(var.PQMarkSource)\bin\EntityFramework.SqlServer.dll" />
                 </Component>
-                <Component Id="cmpED7475805D52D878C2682DFC3EB27C2E" Guid="{659A0A0A-C994-4327-8DDD-FA5E205F10AD}">
+                <Component Id="cmpED7475805D52D878C2682DFC3EB27C2E" Guid="{6D5B15DC-F67D-4776-9B21-C617CCFE5EB7}">
                     <File Id="filE7AA2A3AC97D29F6C91DBF1F22132C88" KeyPath="yes" Source="$(var.PQMarkSource)\bin\ExpressionEvaluator.dll" />
                 </Component>
-                <Component Id="cmpDA2EBCC35D66CA06D81758F6DB492D09" Guid="{6DCC255E-72FF-490D-B2E5-BA781D68FC89}">
+                <Component Id="cmpDA2EBCC35D66CA06D81758F6DB492D09" Guid="{F838878D-5010-4A17-BC98-B11CD3F5118F}">
                     <File Id="fil333020E6A3AE8B38D58421D6BA7FC0BD" KeyPath="yes" Source="$(var.PQMarkSource)\bin\GSF.Core.dll" />
                 </Component>
-                <Component Id="cmp8FC2C14CE944D0E981EF1FC785C222A4" Guid="{D8EA6F9C-2448-4E82-BD1A-51A204A4A718}">
+                <Component Id="cmp8FC2C14CE944D0E981EF1FC785C222A4" Guid="{5F7E0ADF-3642-4C21-8B13-DBB01ED7BC22}">
                     <File Id="filF7DAC348AA9A3C2AAE731496D1395846" KeyPath="yes" Source="$(var.PQMarkSource)\bin\GSF.Security.dll" />
                 </Component>
-                <Component Id="cmp70FE015461182539F6CBFB05CF50F93A" Guid="{2A4310D4-2483-4C4C-A892-E7416630EE28}">
+                <Component Id="cmp70FE015461182539F6CBFB05CF50F93A" Guid="{E296CF62-BD9D-494B-86E1-7A72E5CD81E0}">
                     <File Id="fil31B856BB6A59D18A3671E1B55CB1C651" KeyPath="yes" Source="$(var.PQMarkSource)\bin\GSF.ServiceModel.dll" />
                 </Component>
-                <Component Id="cmpF8F725F5C5127BE6A7A23F90A1CA569A" Guid="{EDC18F42-B77C-4A76-A6A5-DB3E120062F7}">
+                <Component Id="cmpF8F725F5C5127BE6A7A23F90A1CA569A" Guid="{73DF2424-7E80-4055-90A8-7203CB8475E0}">
                     <File Id="filC0DFDF998A246F5C413E1579F1C07750" KeyPath="yes" Source="$(var.PQMarkSource)\bin\GSF.Web.dll" />
                 </Component>
-                <Component Id="cmp90A3265DCCBBCD67FBB6A7A400BCBDF7" Guid="{0BA21C5C-E1F1-4430-9EFD-213AC546325A}">
+                <Component Id="cmp90A3265DCCBBCD67FBB6A7A400BCBDF7" Guid="{CCD89248-A15E-4655-BC01-5136B717F09F}">
                     <File Id="fil8E80032942500DEF40C7594901ACEF63" KeyPath="yes" Source="$(var.PQMarkSource)\bin\Microsoft.AspNet.Identity.Core.dll" />
                 </Component>
-                <Component Id="cmpB79CAEC5575BE57793B8452135B4FCC0" Guid="{59D4B1FD-A3A1-464C-BF17-D21314D7A6AC}">
+                <Component Id="cmpB79CAEC5575BE57793B8452135B4FCC0" Guid="{3887E63B-B49B-447C-933E-C35CF2E01BA9}">
                     <File Id="filC0B426ABAD0790A185220602157BA73C" KeyPath="yes" Source="$(var.PQMarkSource)\bin\Microsoft.AspNet.Identity.EntityFramework.dll" />
                 </Component>
-                <Component Id="cmpA10A68FBB11BEC3DDE749EC9887DC3B4" Guid="{FAE717DE-6380-4D94-B9E5-018FD7C9245C}">
+                <Component Id="cmpA10A68FBB11BEC3DDE749EC9887DC3B4" Guid="{957A0985-AF26-4CAA-BBDC-D52750507F8F}">
                     <File Id="fil533C2B3087F7487DE22FA1F9FC95ADBF" KeyPath="yes" Source="$(var.PQMarkSource)\bin\Microsoft.AspNet.Identity.Owin.dll" />
                 </Component>
-                <Component Id="cmp36018D024C54DBDC2581D271FEB22995" Guid="{1B73CEB4-FCA1-4D58-BEC5-3E408009C7DE}">
+                <Component Id="cmp36018D024C54DBDC2581D271FEB22995" Guid="{51975513-5FA2-4E8E-8D03-DF1C8DFD524F}">
                     <File Id="filB1DA92D0CDED54D5FE728F6625FAD529" KeyPath="yes" Source="$(var.PQMarkSource)\bin\Microsoft.AspNet.SignalR.Core.dll" />
                 </Component>
-                <Component Id="cmp4AF09496E8189EAD6D7183FBBA15C7E4" Guid="{0F3F2EA2-BE6E-4651-89CA-3AF0DA4A8859}">
+                <Component Id="cmp4AF09496E8189EAD6D7183FBBA15C7E4" Guid="{416A31CC-D27C-4B4D-8CE0-C06227E46BCD}">
                     <File Id="fil0E2F4EB3D17404A68708BD9BCAE533BB" KeyPath="yes" Source="$(var.PQMarkSource)\bin\Microsoft.AspNet.SignalR.SystemWeb.dll" />
                 </Component>
-                <Component Id="cmp805E7C2477BE9424FB968F56B45D1897" Guid="{312E4E20-AD04-4BC4-9AFD-0DB975834A3E}">
+                <Component Id="cmp805E7C2477BE9424FB968F56B45D1897" Guid="{0F4B9F3F-6C9E-466C-A2B1-097E3D22D64B}">
                     <File Id="filADB21981B0C05357D83C89E24A109F62" KeyPath="yes" Source="$(var.PQMarkSource)\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
                 </Component>
-                <Component Id="cmpCF30358F744A57D50E813594D8896828" Guid="{45B741BD-D921-4E3D-A4D5-C20A70C61CED}">
+                <Component Id="cmpCF30358F744A57D50E813594D8896828" Guid="{CB0C6A01-F3E6-4E83-A3AA-83C7207BD4CD}">
                     <File Id="fil334692E7D1AAC1A5DA56FA0F68EDF723" KeyPath="yes" Source="$(var.PQMarkSource)\bin\Microsoft.Owin.dll" />
                 </Component>
-                <Component Id="cmp58B82B93E3882DFAE32B4652DB88B213" Guid="{D3F61D97-B697-4360-93B3-E65A1F95E741}">
+                <Component Id="cmp58B82B93E3882DFAE32B4652DB88B213" Guid="{679707BF-A18B-4F15-B46D-73230945EBB6}">
                     <File Id="filC0053546A948501963A5F95809044480" KeyPath="yes" Source="$(var.PQMarkSource)\bin\Microsoft.Owin.Host.SystemWeb.dll" />
                 </Component>
-                <Component Id="cmp7B84B1893466537992F6BBADBBA61D60" Guid="{370806C4-2931-47A2-B9F1-C0FF4515F573}">
+                <Component Id="cmp7B84B1893466537992F6BBADBBA61D60" Guid="{68D50622-F91D-47CD-9D3C-D59586C548F8}">
                     <File Id="fil7946D0DB6D189CAA72B27D1408452486" KeyPath="yes" Source="$(var.PQMarkSource)\bin\Microsoft.Owin.Security.Cookies.dll" />
                 </Component>
-                <Component Id="cmp6D109E28A50C3C05AF99B6127AC0FE58" Guid="{17DAF16E-4627-4447-B5E9-57DFF6A9E423}">
+                <Component Id="cmp6D109E28A50C3C05AF99B6127AC0FE58" Guid="{A82B9352-BFBF-41FA-9DE7-EB1124C13F95}">
                     <File Id="fil1E82514CBE5AF2B9F9492F0B5067A966" KeyPath="yes" Source="$(var.PQMarkSource)\bin\Microsoft.Owin.Security.dll" />
                 </Component>
-                <Component Id="cmpA94A3934FBE4D3DBAF91AF0B7A9D0186" Guid="{9749868B-D427-4AA6-95F0-749EC5C77B89}">
+                <Component Id="cmpA94A3934FBE4D3DBAF91AF0B7A9D0186" Guid="{05C60943-4C31-46D5-B37F-D3B19C88D38D}">
                     <File Id="filCB8D8326ACB8617AF740081E5DB63ABB" KeyPath="yes" Source="$(var.PQMarkSource)\bin\Microsoft.Owin.Security.Facebook.dll" />
                 </Component>
-                <Component Id="cmp820610BAF51F239C757BEA76AA01DD60" Guid="{92499E24-9A47-4433-BA2B-0D7637A09A7F}">
+                <Component Id="cmp820610BAF51F239C757BEA76AA01DD60" Guid="{0CD13D1E-1295-480A-9C3E-633203F4463C}">
                     <File Id="filE7F80F527B6DDAD30E29CE231F748CA2" KeyPath="yes" Source="$(var.PQMarkSource)\bin\Microsoft.Owin.Security.Google.dll" />
                 </Component>
-                <Component Id="cmp2FA441ECF4A5E7869DE466643B178E94" Guid="{81C36330-49CA-4F9C-B2B7-36A389F4BBBE}">
+                <Component Id="cmp2FA441ECF4A5E7869DE466643B178E94" Guid="{C0D265D4-C408-4CE1-BBF4-82310E0B91BF}">
                     <File Id="fil9F0180CBEED0210F9F2E421EC2EB23CD" KeyPath="yes" Source="$(var.PQMarkSource)\bin\Microsoft.Owin.Security.MicrosoftAccount.dll" />
                 </Component>
-                <Component Id="cmp325339B0E29E530E6E1C3468AD4BDE1D" Guid="{69CCCC0B-220A-421B-956B-0C690923AD46}">
+                <Component Id="cmp325339B0E29E530E6E1C3468AD4BDE1D" Guid="{124199B8-DE72-43D5-9579-57A93F2E715A}">
                     <File Id="fil8FF1F3220BE96288D65543B962F1C7D3" KeyPath="yes" Source="$(var.PQMarkSource)\bin\Microsoft.Owin.Security.OAuth.dll" />
                 </Component>
-                <Component Id="cmp5A2992682D7CD07247F31FBA58A3136B" Guid="{CB0719FC-D8A5-45F1-A1B3-BBFD602927BC}">
+                <Component Id="cmp5A2992682D7CD07247F31FBA58A3136B" Guid="{B980B345-9BD1-404E-9AD4-DD8ABBD84F60}">
                     <File Id="fil1B0A7F64BFA2C54B6013581BFEF28AB0" KeyPath="yes" Source="$(var.PQMarkSource)\bin\Microsoft.Owin.Security.Twitter.dll" />
                 </Component>
-                <Component Id="cmp4AC5999A66168DCB6D390A89A1837386" Guid="{9BA4C73F-CDBC-4792-BAA0-252E0E708786}">
+                <Component Id="cmp4AC5999A66168DCB6D390A89A1837386" Guid="{D1EFBFD5-22CF-4158-95E1-A15C8A6341B0}">
                     <File Id="fil7DBB925CF992E775F323DAC4E8584B8B" KeyPath="yes" Source="$(var.PQMarkSource)\bin\Microsoft.Web.Infrastructure.dll" />
                 </Component>
-                <Component Id="cmp90E1CE388F726830321D3AA632F1D4C0" Guid="{AFBE31F4-CD2C-4663-AA0D-9E0CF231362E}">
+                <Component Id="cmp90E1CE388F726830321D3AA632F1D4C0" Guid="{C174B191-919C-4E1B-82B5-4870F979CB16}">
                     <File Id="filB2508A999A1A43C461839A87173453D4" KeyPath="yes" Source="$(var.PQMarkSource)\bin\Newtonsoft.Json.dll" />
                 </Component>
-                <Component Id="cmpDE77160093F018D8FB39AE24711B9A2A" Guid="{44A5B501-E9F1-4BA0-A1EE-770B70D8F8AC}">
+                <Component Id="cmpDE77160093F018D8FB39AE24711B9A2A" Guid="{1B42D08C-097A-404B-861A-5EF1AE2305F2}">
                     <File Id="fil580FC08E0C1A5387AB838220CA641DB5" KeyPath="yes" Source="$(var.PQMarkSource)\bin\Owin.dll" />
                 </Component>
-                <Component Id="cmpC3D2AB16108930693896E05B2C849ED2" Guid="{40F7D21C-1B49-4AFC-8B26-E4458E8ACD7F}">
+                <Component Id="cmpC3D2AB16108930693896E05B2C849ED2" Guid="{36603605-3146-44A3-A921-6D7FC3DB1DD7}">
                     <File Id="fil3613256CA7D85EEA79335E2633D4DAA1" KeyPath="yes" Source="$(var.PQMarkSource)\bin\PQMark.dll" />
                 </Component>
-                <Component Id="cmpBD40959455293F5B2356DB1D2531386E" Guid="{F862B096-7F79-469A-BA13-C9B4A42C85BE}">
+                <Component Id="cmpBD40959455293F5B2356DB1D2531386E" Guid="{34F1D975-A99E-4CA2-8A5F-C60BB3B0FD9D}">
                     <File Id="filBC37F10A285328BAB8B4499EA2D8AFE9" KeyPath="yes" Source="$(var.PQMarkSource)\bin\RazorEngine.dll" />
                 </Component>
-                <Component Id="cmp30A4B7F7971EA98A8FB734E1CEB0105B" Guid="{78D576CC-2DAF-439F-8CC0-FD451DE773BC}">
+                <Component Id="cmp30A4B7F7971EA98A8FB734E1CEB0105B" Guid="{64D6C2ED-FF8F-48AD-907D-E9A72A66DF8E}">
                     <File Id="filB7796581DE8B873C224BFFA5F04C7E99" KeyPath="yes" Source="$(var.PQMarkSource)\bin\System.Net.Http.dll" />
                 </Component>
-                <Component Id="cmpE132B2C2192004DC72210E7334C116D6" Guid="{21688652-3F96-45BA-AC83-F1194889F46A}">
+                <Component Id="cmpE132B2C2192004DC72210E7334C116D6" Guid="{EF65C8C6-72C5-438E-B80F-D8EC8912F519}">
                     <File Id="fil4B1BAF46AC20BAA573837428DDB33F19" KeyPath="yes" Source="$(var.PQMarkSource)\bin\System.Net.Http.Formatting.dll" />
                 </Component>
-                <Component Id="cmpBA6CA8B93442D071608F281CB8219350" Guid="{6010E37F-0C2B-49E0-A31D-9BBF0AF5F5FE}">
+                <Component Id="cmpBA6CA8B93442D071608F281CB8219350" Guid="{E926681C-5B5E-49AF-A5DA-EADC5B6CFE31}">
                     <File Id="filE4A54B3FDCAF5CF61FC120A05FFC7582" KeyPath="yes" Source="$(var.PQMarkSource)\bin\System.Net.Http.WebRequest.dll" />
                 </Component>
-                <Component Id="cmpD60D74A2CF369BB0ADCBAE6CBE8064DF" Guid="{9035A36C-50DF-4428-859D-79B08671E6A3}">
+                <Component Id="cmpD60D74A2CF369BB0ADCBAE6CBE8064DF" Guid="{0A8E60D1-5C0D-428D-960B-3DDC4AB263D1}">
                     <File Id="filED97E95155998E080D81A47DED2D86C3" KeyPath="yes" Source="$(var.PQMarkSource)\bin\System.Web.Helpers.dll" />
                 </Component>
-                <Component Id="cmp442125F1D9A3E34692967D1DC1305764" Guid="{280DDBAC-9A39-4FB8-97D6-7530E1D41DD9}">
+                <Component Id="cmp442125F1D9A3E34692967D1DC1305764" Guid="{B0B1F1A2-63F9-4FED-8403-279A74C32CB2}">
                     <File Id="filE9BC766ABC30788FD676F5B81E6BA057" KeyPath="yes" Source="$(var.PQMarkSource)\bin\System.Web.Http.dll" />
                 </Component>
-                <Component Id="cmpCC36495632771244C91095B42EE15DB2" Guid="{3E3FB988-CBAF-4359-8503-8F014768A674}">
+                <Component Id="cmpCC36495632771244C91095B42EE15DB2" Guid="{CE96DFA4-CA6C-4675-83B5-DC8C2889CC2A}">
                     <File Id="fil8E585301F5E92EABFB97FA6204EA4420" KeyPath="yes" Source="$(var.PQMarkSource)\bin\System.Web.Mvc.dll" />
                 </Component>
-                <Component Id="cmpA7D8671BC7E1D34B0C9E1155A18E9129" Guid="{483F3109-6418-482E-B908-E565BF6DADE6}">
+                <Component Id="cmpA7D8671BC7E1D34B0C9E1155A18E9129" Guid="{94B07FA9-8828-4B62-AF93-2C2C9C3E048C}">
                     <File Id="fil215C9A4EA387688E78AD371ECB0C1658" KeyPath="yes" Source="$(var.PQMarkSource)\bin\System.Web.Optimization.dll" />
                 </Component>
-                <Component Id="cmp7D3217597A7A106C017138FE18BAB1A5" Guid="{C11B2A20-D1B0-4DB4-B12D-51F35086ECB0}">
+                <Component Id="cmp7D3217597A7A106C017138FE18BAB1A5" Guid="{4E331221-185A-41DF-A8C5-672A54892BBB}">
                     <File Id="fil855D08E340A1B1876C92203736F8F1B7" KeyPath="yes" Source="$(var.PQMarkSource)\bin\System.Web.Razor.dll" />
                 </Component>
-                <Component Id="cmp9776D6B1D3A2CBCF93C86DCAE38D7AAC" Guid="{8070F393-6E9E-4601-A156-506F983C5ACC}">
+                <Component Id="cmp9776D6B1D3A2CBCF93C86DCAE38D7AAC" Guid="{1C07073D-E6E1-418A-ABCF-F6BEE6D49DFC}">
                     <File Id="filAFAEFBCB3FF8832EB9233BE9568B470A" KeyPath="yes" Source="$(var.PQMarkSource)\bin\System.Web.WebPages.Deployment.dll" />
                 </Component>
-                <Component Id="cmp6643C039C049A3F3D89384F782DD97BC" Guid="{37B89637-6638-409F-9FAE-1EAC8323BDB3}">
+                <Component Id="cmp6643C039C049A3F3D89384F782DD97BC" Guid="{04D53244-7706-47F4-91FC-AA6D8685D7AA}">
                     <File Id="filB0BA1ECA9608274F22B02A1DF966EF64" KeyPath="yes" Source="$(var.PQMarkSource)\bin\System.Web.WebPages.dll" />
                 </Component>
-                <Component Id="cmp61252686C60C0DB4C9FDB9FBBBD661C9" Guid="{3446C19F-9F41-4768-B3AA-0973208A1CF6}">
+                <Component Id="cmp61252686C60C0DB4C9FDB9FBBBD661C9" Guid="{73DC9A79-CBB3-44E1-8207-42F4761E8156}">
                     <File Id="fil73B408534A1E1C98430194C50AC08281" KeyPath="yes" Source="$(var.PQMarkSource)\bin\System.Web.WebPages.Razor.dll" />
                 </Component>
-                <Component Id="cmp2A3BCF85B2903DBDF151BB9B2F542689" Guid="{D00218C4-8249-45BA-960F-60FB4890493F}">
+                <Component Id="cmp2A3BCF85B2903DBDF151BB9B2F542689" Guid="{CF79EA4E-9743-48E9-A3B3-52950D208449}">
                     <File Id="fil9F3DAE1E3EC0D3075FA1368DC24CD010" KeyPath="yes" Source="$(var.PQMarkSource)\bin\WebGrease.dll" />
                 </Component>
                 <Directory Id="dir3D687FABF00EE850939A096796AFE1C5" Name="roslyn">
-                    <Component Id="cmp197D0EE8D648A68C166C19CF097764F3" Guid="{E791AFE3-E8F1-4906-A4D2-22BB4FA82207}">
+                    <Component Id="cmp197D0EE8D648A68C166C19CF097764F3" Guid="{A9F02A3C-21FB-439D-B182-FED34B6B4FD9}">
                         <File Id="filCD94B0B03F6A9842D985C079762913D3" KeyPath="yes" Source="$(var.PQMarkSource)\bin\roslyn\csc.exe" />
                     </Component>
-                    <Component Id="cmp4625F21B43AB512265FDC2C115624519" Guid="{D31F613B-6036-4C38-B4E9-357D2C3A2326}">
+                    <Component Id="cmp4625F21B43AB512265FDC2C115624519" Guid="{5CC21F57-C057-4A26-BD7A-54A119CD2E90}">
                         <File Id="fil5AB5B73E2C14D32B989F0240C09F4F5F" KeyPath="yes" Source="$(var.PQMarkSource)\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
                     </Component>
-                    <Component Id="cmp0E5B2464D61990AB8E4850761C162D70" Guid="{719673A1-CE8C-469C-8AEA-887CD71EBBFE}">
+                    <Component Id="cmp0E5B2464D61990AB8E4850761C162D70" Guid="{6210EAD1-8E12-4741-822A-3FF4C053B5B4}">
                         <File Id="filF74AF84CD9F34CE7676DFEC46327B84A" KeyPath="yes" Source="$(var.PQMarkSource)\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
                     </Component>
-                    <Component Id="cmp046B2B746F762670FCB67F479B398C2A" Guid="{8848B169-789D-4C85-B571-E594460556FD}">
+                    <Component Id="cmp046B2B746F762670FCB67F479B398C2A" Guid="{941D12EF-3626-4B7E-BD98-C6450DBA8C63}">
                         <File Id="filED6B4C237676D619A5B7D3F3C37954DC" KeyPath="yes" Source="$(var.PQMarkSource)\bin\roslyn\Microsoft.CodeAnalysis.dll" />
                     </Component>
-                    <Component Id="cmpEED8B4DCE20147926FFAA0D7DC71221D" Guid="{449490F7-43C2-40AF-9CF5-49F3B57B6662}">
+                    <Component Id="cmpEED8B4DCE20147926FFAA0D7DC71221D" Guid="{61F5716C-6081-4E15-997E-2E2901CB8118}">
                         <File Id="fil33AAFF6905B0A137161DA5DE5C1CD87E" KeyPath="yes" Source="$(var.PQMarkSource)\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
                     </Component>
-                    <Component Id="cmp2D462C6F004C764171B02D3DD3AD10CF" Guid="{DB7DDC10-662E-408F-8579-232775B4569E}">
+                    <Component Id="cmp2D462C6F004C764171B02D3DD3AD10CF" Guid="{985B7985-E7D9-4076-9022-9B873ACD5BD0}">
                         <File Id="fil275354FB21C886FCE9E8E4E8B12546FF" KeyPath="yes" Source="$(var.PQMarkSource)\bin\roslyn\Microsoft.CSharp.Core.targets" />
                     </Component>
-                    <Component Id="cmpE589CB11E962AC740874EFD94A94DE3E" Guid="{0CFB1450-7942-4D3E-8199-BD56546288C8}">
+                    <Component Id="cmpE589CB11E962AC740874EFD94A94DE3E" Guid="{2950389B-3772-4AEF-B4A4-398287E66EE7}">
                         <File Id="fil190C8AD9AF6B3C3A85A7B3F25EDA75C0" KeyPath="yes" Source="$(var.PQMarkSource)\bin\roslyn\Microsoft.VisualBasic.Core.targets" />
                     </Component>
-                    <Component Id="cmpCD7B1AACDC9757786059B3D7564C871A" Guid="{EE745423-2A75-4D3C-8207-19DC7C47B152}">
+                    <Component Id="cmpCD7B1AACDC9757786059B3D7564C871A" Guid="{C729B2CC-1F29-4586-B76E-F66A5175FED9}">
                         <File Id="filC1A1C4013AE0B2AB8EB3A8FB90FF88C4" KeyPath="yes" Source="$(var.PQMarkSource)\bin\roslyn\System.Collections.Immutable.dll" />
                     </Component>
-                    <Component Id="cmp02BEB5ECD7EFB0FC48CCAEAAA63FD915" Guid="{76AFD0D9-127E-4C18-85EC-61843717EDE8}">
+                    <Component Id="cmp02BEB5ECD7EFB0FC48CCAEAAA63FD915" Guid="{C0C26854-C441-4274-9CA2-E10342666397}">
                         <File Id="fil8A348C5ACBE530490F679B8320C42378" KeyPath="yes" Source="$(var.PQMarkSource)\bin\roslyn\System.Reflection.Metadata.dll" />
                     </Component>
-                    <Component Id="cmp7ECE45CFD85EAB2EC90F91A1A6131E1E" Guid="{20A4BB68-6FD2-4F9F-AF65-9727AE7F73C7}">
+                    <Component Id="cmp7ECE45CFD85EAB2EC90F91A1A6131E1E" Guid="{73E9E1D8-A074-4A19-A8EA-571F9CAB53D1}">
                         <File Id="fil9B5FE0A2FD0C7352FF282C15DB3BC0C7" KeyPath="yes" Source="$(var.PQMarkSource)\bin\roslyn\vbc.exe" />
                     </Component>
-                    <Component Id="cmp7AB17710D8A70CCD68A77097F9975DDA" Guid="{577B4C42-F405-4C08-A5A1-80171D5C12BE}">
+                    <Component Id="cmp7AB17710D8A70CCD68A77097F9975DDA" Guid="{C209548A-1EBB-4C24-B26C-3E345C439615}">
                         <File Id="fil0B90B24E7006A97B945C9159ABAA38BB" KeyPath="yes" Source="$(var.PQMarkSource)\bin\roslyn\VBCSCompiler.exe" />
                     </Component>
-                    <Component Id="cmpBCC817B159DE3DFC982432C4D1D51589" Guid="{567526B0-5F6F-40C9-A0A3-9B0E590C0EB7}">
+                    <Component Id="cmpBCC817B159DE3DFC982432C4D1D51589" Guid="{E1FCE80A-4CD9-41D2-A734-1C71C558977E}">
                         <File Id="fil8B5846D7CFBD70FE7F9C193DD4D3DF42" KeyPath="yes" Source="$(var.PQMarkSource)\bin\roslyn\VBCSCompiler.exe.config" />
                     </Component>
                 </Directory>
             </Directory>
             <Directory Id="dir4508444203631BAA939DA9863CEFAFCF" Name="Content">
-                <Component Id="cmp8ABE9E472B3E57FD360CCF8B70FCFC95" Guid="{25DA5419-ED88-4B27-9955-0D238556FBF3}">
+                <Component Id="cmp8ABE9E472B3E57FD360CCF8B70FCFC95" Guid="{A90EA206-1856-4FAD-8DEC-CF9EFB02E038}">
                     <File Id="filA3FC84F7AC0557A0BA5213C84D9D81B3" KeyPath="yes" Source="$(var.PQMarkSource)\Content\bootstrap.css" />
                 </Component>
-                <Component Id="cmp60B5075F734D6D30C444CABCDD663828" Guid="{48BDE326-0253-436D-8B7A-EC6F7CAD717B}">
+                <Component Id="cmp60B5075F734D6D30C444CABCDD663828" Guid="{B583FF73-3BA7-4296-B607-9AE998572EF7}">
                     <File Id="fil9ACEBA5EB0D30B9994E58EE17612F1C3" KeyPath="yes" Source="$(var.PQMarkSource)\Content\bootstrap.min.css" />
                 </Component>
-                <Component Id="cmpE116A5AF29029B7B9C4C177F261D990A" Guid="{0859914C-DC72-4FA9-800F-5E9E566B991C}">
+                <Component Id="cmp86FE8BCD4F6952F965ABED1BB7E419AE" Guid="{8F6E8E78-E8C1-4088-A9F7-5C7DF3F90052}">
+                    <File Id="filEE2B7D5128DD684EBEB7BCBD180DEDCC" KeyPath="yes" Source="$(var.PQMarkSource)\Content\default.css" />
+                </Component>
+                <Component Id="cmp79333523CDC736FC52167FE3326EC651" Guid="{830D09A7-8F22-4727-BEEC-EF3EE0771977}">
+                    <File Id="fil90A12A2718893D0E97A4D983F38F8E26" KeyPath="yes" Source="$(var.PQMarkSource)\Content\epri-style.css" />
+                </Component>
+                <Component Id="cmpE116A5AF29029B7B9C4C177F261D990A" Guid="{BF88C0CA-84D1-44F4-8D89-1DE82DEC4F9C}">
                     <File Id="fil503025784435E14AF2A803DFF3E3EC88" KeyPath="yes" Source="$(var.PQMarkSource)\Content\Site.css" />
                 </Component>
             </Directory>
             <Directory Id="dir56FA181BA7D2C23E7EE11CFFD4E6501D" Name="fonts">
-                <Component Id="cmpE5E08C4F1BCCF979DB3637EEDAF7FE07" Guid="{8706CA44-FE0A-4981-B25F-4FFCCA0BE7E1}">
+                <Component Id="cmpE5E08C4F1BCCF979DB3637EEDAF7FE07" Guid="{2B78BFB4-9E57-4C30-BFBB-49D17F16A6D6}">
                     <File Id="fil9F7728E61817C12C922B7B38C3C2D690" KeyPath="yes" Source="$(var.PQMarkSource)\fonts\glyphicons-halflings-regular.eot" />
                 </Component>
-                <Component Id="cmp6AB2B1F80A8232C88E381895C9565799" Guid="{218AECFB-62F3-407B-A7D8-1EA352FE54D2}">
+                <Component Id="cmp6AB2B1F80A8232C88E381895C9565799" Guid="{4581CCB6-CBF9-4BEA-9155-CFC19CF2427A}">
                     <File Id="filE5414853600D93D7A31B76352EACE024" KeyPath="yes" Source="$(var.PQMarkSource)\fonts\glyphicons-halflings-regular.svg" />
                 </Component>
-                <Component Id="cmp609F26CB9854FFA63A5098A17C8E6F63" Guid="{A50E6531-8853-4989-A0E6-A0328B21CDCB}">
+                <Component Id="cmp609F26CB9854FFA63A5098A17C8E6F63" Guid="{CA734385-D7BF-42E7-B20F-E2C0C2182EEE}">
                     <File Id="fil977FB059265E2C58F4F4DF18B7F16E54" KeyPath="yes" Source="$(var.PQMarkSource)\fonts\glyphicons-halflings-regular.ttf" />
                 </Component>
-                <Component Id="cmp8417CBE51A381DED10FB308CF1F5BA01" Guid="{35B41E33-EB13-482E-AB20-C1F16B412994}">
+                <Component Id="cmp8417CBE51A381DED10FB308CF1F5BA01" Guid="{D5320F0E-71A7-4FCF-9DD2-72742404F35F}">
                     <File Id="fil830A5011F9BC641C08CE46A98895D607" KeyPath="yes" Source="$(var.PQMarkSource)\fonts\glyphicons-halflings-regular.woff" />
                 </Component>
             </Directory>
             <Directory Id="dirE7A66E59CF5CA660DBC623D5B936B68E" Name="Images">
-                <Component Id="cmp45764803DDB56B96289EB0B5F02C9F14" Guid="{2986E510-F474-4894-8C7E-3E645C45450F}">
+                <Component Id="cmp45764803DDB56B96289EB0B5F02C9F14" Guid="{05FB8D65-7E74-49B6-9B01-569113C7B06C}">
                     <File Id="fil34EE3BD8E66F50B662E9033E1126CEBC" KeyPath="yes" Source="$(var.PQMarkSource)\Images\BlueEPRI_400.png" />
                 </Component>
-                <Component Id="cmp042337B091934C715F838832FB33DA22" Guid="{5B74E97C-A748-432A-8384-DDE427E587B2}">
+                <Component Id="cmp66139867132442753E010DDAA1336309" Guid="{75298C83-E3FA-4F19-A973-BDA15C2410CA}">
+                    <File Id="fil75F666BDF9AF29F579FD141BF477E104" KeyPath="yes" Source="$(var.PQMarkSource)\Images\epri-logo-color.svg" />
+                </Component>
+                <Component Id="cmp042337B091934C715F838832FB33DA22" Guid="{C71D7182-CA9E-4A15-B559-E7FF55B5D995}">
                     <File Id="filEF44A283DBECC6CA1A999F3159E03318" KeyPath="yes" Source="$(var.PQMarkSource)\Images\epri_04_10_2007.jpg" />
                 </Component>
-                <Component Id="cmpBD3993B60DC11B52C52FB54779355AC3" Guid="{A74E3DCD-A75F-4582-A801-11C93B332EBC}">
+                <Component Id="cmp6F15B31B9A01F3B92B61AE016D28C54A" Guid="{3519A383-C50B-437B-9D9F-8F901CA1EB4F}">
+                    <File Id="fil62025EB1090BDD1F92C6609CF9AB373F" KeyPath="yes" Source="$(var.PQMarkSource)\Images\header.jpg" />
+                </Component>
+                <Component Id="cmpBD3993B60DC11B52C52FB54779355AC3" Guid="{8B5FFD66-6A90-48EA-930D-1CE25C0477E5}">
                     <File Id="fil767DB7E9F08B7FE3DA03DC2E9AD66B30" KeyPath="yes" Source="$(var.PQMarkSource)\Images\PQ Mark Logo 400.png" />
                 </Component>
-                <Component Id="cmp4025AABADC68927782915118AC560EF0" Guid="{4E986BFA-97DA-4E67-896C-77432E6C3CE8}">
+                <Component Id="cmp4025AABADC68927782915118AC560EF0" Guid="{5867EB55-AAEB-46BF-8CD4-F1470FF13383}">
                     <File Id="fil033F21BB052D811CBC42FD73E536FEE0" KeyPath="yes" Source="$(var.PQMarkSource)\Images\PQ Mark Repository 400.png" />
                 </Component>
-                <Component Id="cmpC59FB2ED9EEE70AA870D5FB7298D6916" Guid="{A0375197-51AF-4B96-805F-539F356F9DDC}">
+                <Component Id="cmpC59FB2ED9EEE70AA870D5FB7298D6916" Guid="{5D8EA5BE-FE1A-45CE-A682-E1602EB9F0FE}">
                     <File Id="filDA212AE6E254D4E1171A4B11D7E7B4D5" KeyPath="yes" Source="$(var.PQMarkSource)\Images\PQ Mark2_400.png" />
                 </Component>
-                <Component Id="cmp052CD82BFB23B4756F418585C184ADAA" Guid="{AB38F412-3E34-46F2-A93B-BE7EC3B45014}">
+                <Component Id="cmp052CD82BFB23B4756F418585C184ADAA" Guid="{AD0777D6-2AA7-4403-B579-27678C964156}">
                     <File Id="fil923180FD85EA87EF7F80F721297C4B2E" KeyPath="yes" Source="$(var.PQMarkSource)\Images\PQ Mark2_600.png" />
                 </Component>
-                <Component Id="cmp1D9DB34C19F98A666389D636AD3C34E1" Guid="{F9BB6F59-160A-4356-85FD-0B5D61A04CB9}">
+                <Component Id="cmp1D9DB34C19F98A666389D636AD3C34E1" Guid="{7AB1A1D8-1B07-4394-A071-BA37A3D7E718}">
                     <File Id="fil1F044F5546BA4A1FDA8E302B8EDDEC73" KeyPath="yes" Source="$(var.PQMarkSource)\Images\PQMark2wPOC600.png" />
                 </Component>
-                <Component Id="cmpB6D018B24777B97B3DB2E0C6F71A49DF" Guid="{D6E48F04-40C6-4110-934E-3C5FDE01606B}">
+                <Component Id="cmpB6D018B24777B97B3DB2E0C6F71A49DF" Guid="{D848F22B-7870-4166-9BA4-8C4D6CFD94CB}">
                     <File Id="fil5524B4F991127826BFAF92A1570D18DC" KeyPath="yes" Source="$(var.PQMarkSource)\Images\PQMarkOverview.png" />
                 </Component>
-                <Component Id="cmp733647A0AC93B7525C5E59B3B6A30BFB" Guid="{CC7FC36A-2BF7-4D8A-8C7C-1CC29D43D046}">
+                <Component Id="cmp733647A0AC93B7525C5E59B3B6A30BFB" Guid="{A5EB2D94-C2D8-418F-A9BA-FACECFC575B0}">
                     <File Id="fil8040BDDF56D11782118B1229277F49FC" KeyPath="yes" Source="$(var.PQMarkSource)\Images\SplashScreen.png" />
                 </Component>
             </Directory>
             <Directory Id="dirE346D036EC092629D831433A6E4791C4" Name="Scripts">
-                <Component Id="cmpF45EF98DB8CD0D1BEC0F0CAA29FF87A3" Guid="{410284F4-33CE-4C74-A359-DB58E195BD62}">
+                <Component Id="cmpF45EF98DB8CD0D1BEC0F0CAA29FF87A3" Guid="{9AAFC49D-169B-47E3-A94D-95DF5DDB646D}">
                     <File Id="filD62F7B853BF588AD05E9CE6A9D86C6E1" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\bootstrap.js" />
                 </Component>
-                <Component Id="cmpCC5DF53B7F8B053096C18C8AB9A5E609" Guid="{1A5154FC-3F34-4717-8C74-BF35120B203A}">
+                <Component Id="cmpCC5DF53B7F8B053096C18C8AB9A5E609" Guid="{AD535842-C9BA-4FA3-9EA0-2118C7600C79}">
                     <File Id="filC73F5A9A58604254DED002C7EA466960" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\bootstrap.min.js" />
                 </Component>
-                <Component Id="cmpFF5B88CE5291E47BFCC2F2433619AA20" Guid="{D8BFA822-AA91-47B0-9AFA-84CA104BC350}">
+                <Component Id="cmpFF5B88CE5291E47BFCC2F2433619AA20" Guid="{18965455-6335-4DFC-B01E-6A849AF2513E}">
                     <File Id="fil1EC12E6B638B9F53DBFB0E8EE71E3F04" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\ie10-viewport-bug-workaround.js" />
                 </Component>
-                <Component Id="cmpE90D03ECD3FA685B597BC1CA9740CCD2" Guid="{1EFDE954-A74E-403A-A42E-4106258B44A2}">
+                <Component Id="cmpE90D03ECD3FA685B597BC1CA9740CCD2" Guid="{72A49FE4-E807-48B9-88A7-49DA09937704}">
                     <File Id="fil38955E69AE3BB5B709C94691174E15F1" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\jquery-1.10.2.js" />
                 </Component>
-                <Component Id="cmp11D994AD26430E8A3CECF4545E2A3FF4" Guid="{B2435D77-DDFD-4C1F-BA81-D66D335E9688}">
+                <Component Id="cmp11D994AD26430E8A3CECF4545E2A3FF4" Guid="{0D9E1A7E-BF28-49D7-9743-D22CA8C332D3}">
                     <File Id="fil60523C68C5623FC7B01DCFBF86ECEF32" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\jquery-1.10.2.min.js" />
                 </Component>
-                <Component Id="cmpE069641980273511400337604554150D" Guid="{B082B768-12D0-4674-93C7-E7DAD8518BD4}">
+                <Component Id="cmpE069641980273511400337604554150D" Guid="{0AB64968-184D-40D8-8D4A-1728D0F06A01}">
                     <File Id="filDCDC7107E6EF7EF7B62445E68743BB8D" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\jquery-1.10.2.min.map" />
                 </Component>
-                <Component Id="cmp31CBB21AA93C3EFE0D00F5F97973715D" Guid="{4D143747-C82A-4095-A00A-B738344D77C4}">
+                <Component Id="cmp31CBB21AA93C3EFE0D00F5F97973715D" Guid="{93E077EE-CA3A-4DB9-A7E1-D5337140F1A5}">
                     <File Id="filCF9F46755AAEE158BF7FD5C14D60F201" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\jquery.signalR-2.2.1.js" />
                 </Component>
-                <Component Id="cmpD801025516D6D20EA7CE6CCDEA0C5023" Guid="{C32152C8-8815-48A5-B473-7132DF97E91C}">
+                <Component Id="cmpD801025516D6D20EA7CE6CCDEA0C5023" Guid="{9173A558-DD7D-478E-B396-E9B0C3984004}">
                     <File Id="fil8E19F2829F10C7AED109D2044412E05F" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\jquery.signalR-2.2.1.min.js" />
                 </Component>
-                <Component Id="cmp16D5254FDB84B9E86D0D83512578AE17" Guid="{F9C52201-C90C-4C55-BD10-BF7BF345AA0D}">
+                <Component Id="cmp16D5254FDB84B9E86D0D83512578AE17" Guid="{38E08F20-4A0D-445C-AB21-00A83F9525A3}">
                     <File Id="fil979704083476EA5735E37FC84A013D22" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\jquery.validate.js" />
                 </Component>
-                <Component Id="cmp68037361916C9AE4DCD2017BB2457DDB" Guid="{C1174CEB-F010-45A8-80FB-93F871747F56}">
+                <Component Id="cmp68037361916C9AE4DCD2017BB2457DDB" Guid="{8C55CF06-EC71-4C6F-8D79-5297B3A82E2D}">
                     <File Id="filF4B661189CAC25B1C8544D103744697F" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\jquery.validate.min.js" />
                 </Component>
-                <Component Id="cmpAF88341FA84A76AD8668E3FDF2040ABF" Guid="{3B0215A3-3692-4F4C-9D26-38A6DA450F32}">
+                <Component Id="cmpAF88341FA84A76AD8668E3FDF2040ABF" Guid="{633A161A-26E4-4A2A-8145-263350A66E48}">
                     <File Id="fil0901150961E89E0A33BD98D803C8247B" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\jquery.validate.unobtrusive.js" />
                 </Component>
-                <Component Id="cmpEF96C0A7F0E381187166454B760BA9D3" Guid="{BED06D44-FD82-4EB9-A2CE-67E711FEF381}">
+                <Component Id="cmpEF96C0A7F0E381187166454B760BA9D3" Guid="{8A8BC7B4-BA96-4218-A9CE-D8C7150809F1}">
                     <File Id="fil5BED34A1D89A552F323CB89F9901EDFF" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\jquery.validate.unobtrusive.min.js" />
                 </Component>
-                <Component Id="cmpD2EAB57A34268B164E97CC26F7676935" Guid="{14C478E7-712E-4D7A-AA30-D1F048BABD5F}">
+                <Component Id="cmpD2EAB57A34268B164E97CC26F7676935" Guid="{57FD97CF-4AC9-4112-97B3-D486EFE6F995}">
                     <File Id="fil95763C1A749072A3609E90D68B5A97BE" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\json2.js" />
                 </Component>
-                <Component Id="cmp8EA37B70BF0775D9077359C9512EC448" Guid="{42564A75-CD0D-42E6-B7FD-CB8E039CFFF8}">
+                <Component Id="cmp8EA37B70BF0775D9077359C9512EC448" Guid="{1111C911-0CBE-435D-B414-0FC78A2856A9}">
                     <File Id="fil5E95F98EBE4072BF52F1126746AA3350" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\json2.min.js" />
                 </Component>
-                <Component Id="cmp8DF9C4B8BEDBE503E8C1ED2D5B2DB65F" Guid="{4C594ACF-DAD6-43B2-B56F-2ACBD4B3D0DE}">
+                <Component Id="cmp8DF9C4B8BEDBE503E8C1ED2D5B2DB65F" Guid="{64553D78-2406-44E2-BCDA-530EF5B572F4}">
                     <File Id="filDD34EF2571EC3844EE03FE8BB9BD383E" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\modernizr-2.6.2.js" />
                 </Component>
-                <Component Id="cmp43B26CFDEA95F8C4140A96DB503B8D83" Guid="{C1055C09-316A-4C12-B280-5D5E053A0C87}">
+                <Component Id="cmp43B26CFDEA95F8C4140A96DB503B8D83" Guid="{299F3C45-DBBF-4E33-9959-45914AD7CA7C}">
                     <File Id="fil3FA4EDEEF96803390F08DE0D2B997F6B" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\plotly-1.12.0.js" />
                 </Component>
-                <Component Id="cmp5592FC505DF8D47D8EA1235511597CAD" Guid="{6B53CACC-8F12-40FF-BFA3-073C2FB8981C}">
+                <Component Id="cmp5592FC505DF8D47D8EA1235511597CAD" Guid="{C1506842-2DB6-4255-B8BC-A41677E1D56F}">
                     <File Id="fil8F9A48B820706643ADF582E800635607" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\plotly-1.12.0.min.js" />
                 </Component>
-                <Component Id="cmp991D852628B26459B44CEB9624D43D1D" Guid="{CFF2FFCF-D904-4695-8302-A04BCFF4EC74}">
+                <Component Id="cmp991D852628B26459B44CEB9624D43D1D" Guid="{D8FB36DE-FC91-4560-862A-D74088C3F970}">
                     <File Id="filCB7C30568DE98C627FC400BBAF2D3350" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\plotly-latest.js" />
                 </Component>
-                <Component Id="cmpD43E6C18617C4D3251A4CB2EE7C2D390" Guid="{79A29BC7-8875-4486-8E29-95976093EE11}">
+                <Component Id="cmpD43E6C18617C4D3251A4CB2EE7C2D390" Guid="{2BDA163D-C986-48A2-9478-B0C69B7FC5CB}">
                     <File Id="filFFC6DD6EC700165C68469F01892EADCA" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\plotly-latest.min.js" />
                 </Component>
-                <Component Id="cmp03812F9C4A9F32CCEE7165CD80186A71" Guid="{25C3199B-053A-4D89-A9BD-CC32D18A7612}">
+                <Component Id="cmp03812F9C4A9F32CCEE7165CD80186A71" Guid="{1E670ED0-F2B0-495A-87DD-E3B560AADEF8}">
                     <File Id="filB9EED070119959A9398C97135296137B" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\PQMark.js" />
                 </Component>
-                <Component Id="cmp9D2A36780E9AD9AAAE60708B8A227455" Guid="{C20E9F9D-696D-4A86-884C-1C1B644184D8}">
+                <Component Id="cmp9D2A36780E9AD9AAAE60708B8A227455" Guid="{BA37DE6D-75A5-407F-BAA2-E24F7D43E03F}">
                     <File Id="fil48CE7E4BC69F3FAF1920589DEC0565A9" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\respond.js" />
                 </Component>
-                <Component Id="cmp87513A02B2DAE1D0A73821FCB695D045" Guid="{6EAC54F6-10DA-4BB8-994A-3BE11C46D91F}">
+                <Component Id="cmp87513A02B2DAE1D0A73821FCB695D045" Guid="{34B79044-43B0-4775-9E34-7287D4277079}">
                     <File Id="filA1B9AF9890C694739790371FEC03F046" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\respond.min.js" />
                 </Component>
-                <Component Id="cmp49D7290AD96716DFC85378DBCB23FE0B" Guid="{FE714CDA-C4F3-4AB7-8925-9FF120F7E2AD}">
+                <Component Id="cmp49D7290AD96716DFC85378DBCB23FE0B" Guid="{2B19E270-6791-4EFA-ADC2-C7843F9C7257}">
                     <File Id="filF78508A80F1C92B481D13BEDCE32CCC2" KeyPath="yes" Source="$(var.PQMarkSource)\Scripts\_references.js" />
                 </Component>
             </Directory>
             <Directory Id="dir556A697C2653F65D1EBB2621DD3AD475" Name="Views">
-                <Component Id="cmp213C9B61E10465DD42FB2DC1CD2FABB1" Guid="{53652074-E58B-4E2A-AB74-23091DED1A17}">
+                <Component Id="cmp213C9B61E10465DD42FB2DC1CD2FABB1" Guid="{6384CCC4-1F1D-4DD2-A671-EEF1EF3186D8}">
                     <File Id="filC9AE3C07A985594F2A79470274ABD6FD" KeyPath="yes" Source="$(var.PQMarkSource)\Views\Web.config" />
                 </Component>
-                <Component Id="cmp116715745A38BCFFFFCF1A62C00D8B51" Guid="{F928A617-EE20-4C76-B6FD-37A723406C3C}">
+                <Component Id="cmp116715745A38BCFFFFCF1A62C00D8B51" Guid="{2DDE583C-F8CF-429D-B2B8-94084413C21E}">
                     <File Id="fil35D22BF07722314F8A44727FB1EE51CE" KeyPath="yes" Source="$(var.PQMarkSource)\Views\_ViewStart.cshtml" />
                 </Component>
                 <Directory Id="dir29954687A88918A2330F2DB32B326286" Name="Home">
-                    <Component Id="cmp19969A83A19D8DE7D5574FF07D3C2E73" Guid="{7D047F1E-4B30-4B4E-AC00-CB7E715CE668}">
+                    <Component Id="cmp19969A83A19D8DE7D5574FF07D3C2E73" Guid="{12786456-CAB1-4685-9CA2-9AE06EBB5DE5}">
                         <File Id="fil3445CD39D35981E324E7D90BE38AB02C" KeyPath="yes" Source="$(var.PQMarkSource)\Views\Home\Home.cshtml" />
                     </Component>
-                    <Component Id="cmp1EA2A5207CF7A88C76F913796DDD45E9" Guid="{7856A1AA-7B58-4E4C-9F8E-E92E40AB09BD}">
+                    <Component Id="cmp1EA2A5207CF7A88C76F913796DDD45E9" Guid="{8191153A-49B3-4D87-A906-C7166196D35C}">
                         <File Id="fil2A56D19A0DF8485D6C78DC92DCDA2FB8" KeyPath="yes" Source="$(var.PQMarkSource)\Views\Home\Index.cshtml" />
                     </Component>
-                    <Component Id="cmpD99B67C84F787A035B1BFFAE1C27A770" Guid="{5F2848DB-A43A-49E7-84FA-EE4D757C5F5F}">
+                    <Component Id="cmpD99B67C84F787A035B1BFFAE1C27A770" Guid="{7D2DD80A-C9B6-49A5-AAB7-E86377F6B291}">
                         <File Id="filD9F30DE0CD72D7BCC9AA2F6D7B384094" KeyPath="yes" Source="$(var.PQMarkSource)\Views\Home\PQEventMagnitudeDuration.cshtml" />
                     </Component>
-                    <Component Id="cmp0E3DF23F9C65085D0AEDAF133A5BCE62" Guid="{A84F0434-0F65-4E37-9B71-29819DEBCBB4}">
+                    <Component Id="cmp0E3DF23F9C65085D0AEDAF133A5BCE62" Guid="{E06940A9-38B7-4FA3-A399-A8858D73B5FD}">
                         <File Id="fil53DED142CE1C6CEFF4E1F0B27C7440A8" KeyPath="yes" Source="$(var.PQMarkSource)\Views\Home\PQVoltage3D.cshtml" />
                     </Component>
-                    <Component Id="cmp808CC9F0FE70D4B449B28D36736BE371" Guid="{0FDFE2F3-5A17-424C-99AE-823F379E7EBE}">
+                    <Component Id="cmp808CC9F0FE70D4B449B28D36736BE371" Guid="{9B0747F8-3D0C-4E4E-9004-E3116CDF12F7}">
                         <File Id="fil4E725D7A414F88E31BBEFE2296209DC9" KeyPath="yes" Source="$(var.PQMarkSource)\Views\Home\SARFI.cshtml" />
                     </Component>
-                    <Component Id="cmp65F78A7C72A4C1ADD5AB025AD569FD0B" Guid="{2BB8195A-D5CC-4FF7-AE0B-1471C0172440}">
+                    <Component Id="cmp65F78A7C72A4C1ADD5AB025AD569FD0B" Guid="{43534108-006B-4D43-89EC-DC5A99A76517}">
                         <File Id="filF99A50F76E5910CC6F505ED437650C80" KeyPath="yes" Source="$(var.PQMarkSource)\Views\Home\VoltageTHDFrequency.cshtml" />
                     </Component>
                 </Directory>
                 <Directory Id="dir6A75D0E9FD84E66643649E575ACEECEE" Name="Shared">
-                    <Component Id="cmp0A7C4392545CFF2C4DA697C7A480DD73" Guid="{3C195B23-8169-45AA-9A5C-B787B8C3FE94}">
+                    <Component Id="cmp0A7C4392545CFF2C4DA697C7A480DD73" Guid="{60131EE3-41D0-403E-A230-56E88CD172A8}">
                         <File Id="fil84DB7A29D1C3A141751AAAA5F27CF40B" KeyPath="yes" Source="$(var.PQMarkSource)\Views\Shared\Error.cshtml" />
                     </Component>
-                    <Component Id="cmp7D497EC7584913AEA6F3AA136BF23068" Guid="{386629AE-45F6-49FA-9800-27632CA7894B}">
+                    <Component Id="cmp7D497EC7584913AEA6F3AA136BF23068" Guid="{22A0A7EA-7301-4216-A06B-CB286115EAB7}">
                         <File Id="fil43C48C7C7AD526F900DB7633B0EB3C2A" KeyPath="yes" Source="$(var.PQMarkSource)\Views\Shared\Lockout.cshtml" />
                     </Component>
-                    <Component Id="cmp9F748185670056DC03F59254B568ACD0" Guid="{BD6D1836-A8D1-4E86-B7B5-37875591384E}">
+                    <Component Id="cmp9F748185670056DC03F59254B568ACD0" Guid="{1A853048-1750-4F1C-8129-3661B60D8D2A}">
                         <File Id="fil1A50B4F187FF7FC9C227E0D0BD45F664" KeyPath="yes" Source="$(var.PQMarkSource)\Views\Shared\_Layout.cshtml" />
                     </Component>
-                    <Component Id="cmp9B16C82BA622FE64A33191D75A26876D" Guid="{333D4816-0289-41FF-8618-90171CB81B57}">
+                    <Component Id="cmp9B16C82BA622FE64A33191D75A26876D" Guid="{90F532DF-BD6E-417F-9562-1B784D3C3FBC}">
                         <File Id="fil2B77B0B8053D1B4E6D7A97F5CA2E87FE" KeyPath="yes" Source="$(var.PQMarkSource)\Views\Shared\_LoginPartial.cshtml" />
                     </Component>
                 </Directory>
@@ -415,13 +427,17 @@
             <ComponentRef Id="cmpBCC817B159DE3DFC982432C4D1D51589" />
             <ComponentRef Id="cmp8ABE9E472B3E57FD360CCF8B70FCFC95" />
             <ComponentRef Id="cmp60B5075F734D6D30C444CABCDD663828" />
+            <ComponentRef Id="cmp86FE8BCD4F6952F965ABED1BB7E419AE" />
+            <ComponentRef Id="cmp79333523CDC736FC52167FE3326EC651" />
             <ComponentRef Id="cmpE116A5AF29029B7B9C4C177F261D990A" />
             <ComponentRef Id="cmpE5E08C4F1BCCF979DB3637EEDAF7FE07" />
             <ComponentRef Id="cmp6AB2B1F80A8232C88E381895C9565799" />
             <ComponentRef Id="cmp609F26CB9854FFA63A5098A17C8E6F63" />
             <ComponentRef Id="cmp8417CBE51A381DED10FB308CF1F5BA01" />
             <ComponentRef Id="cmp45764803DDB56B96289EB0B5F02C9F14" />
+            <ComponentRef Id="cmp66139867132442753E010DDAA1336309" />
             <ComponentRef Id="cmp042337B091934C715F838832FB33DA22" />
+            <ComponentRef Id="cmp6F15B31B9A01F3B92B61AE016D28C54A" />
             <ComponentRef Id="cmpBD3993B60DC11B52C52FB54779355AC3" />
             <ComponentRef Id="cmp4025AABADC68927782915118AC560EF0" />
             <ComponentRef Id="cmpC59FB2ED9EEE70AA870D5FB7298D6916" />

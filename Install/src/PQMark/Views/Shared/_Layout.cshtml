@@ -30,12 +30,20 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PQMark - @ViewBag.Title</title>
+   
     @Styles.Render("~/Content/css")
     @RenderSection("StyleSheets", required: false)
     @Scripts.Render("~/bundles/modernizr")
 
+    
+
 </head>
 <body>
+@*<header>
+    <img src="~/Images/epri-logo-color.svg"/>
+    <div id="epriHeaderTitleWide" class="epriColorDark">@Model.Layout.HeaderTitleWide</div>
+    <div id="epriHeaderTitleNarrow" class="epriColorDark epriBackgroundColorLight">@Model.Layout.HeaderTitleNarrow</div>
+
     <div id="navBar" class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -54,44 +62,121 @@
                     <li>@Html.ActionLink("Steady State", "VoltageTHDFrequency", "Home")</li>
                     <li><a href="#" data-toggle="modal" data-target="#modal">Info</a></li>
                 </ul>
-                @*<img class="pull-right" style="height: 50px;" src="@Url.Content("~/Images/epri_04_10_2007.jpg")" />*@
+                <img class="pull-right" style="height: 50px;" src="@Url.Content("~/Images/epri_04_10_2007.jpg")" />
             </div>
         </div>
     </div>
-    <div id="viewWindow" class="container body-content">
-        @RenderBody()
+
+</header>*@
+    <div class="header">
+        <h1 class="site_title">
+            <img src="~/Images/header.jpg" alt="EPRI: Electric Power Research Insitute" />
+        </h1>
+
+        @*<p class="salutation">
+            <strong>Welcome David Hasselberg</strong>
+        </p>*@
+
+
+        <div class="nav_pre nav">
+            <ul>
+                @*<li><a title="Utility Link" href="https://login.epri.com/login.aspx" target="_blank">Login</a></li>*@
+                <li><a title="Utility Link" href="https://login.epri.com/login.aspx" target="_blank">Log Off</a></li>
+                <li><a title="Utility Link" href="https://www.epri.com/" target="_blank">EPRI.com</a></li>
+
+            </ul>
+        </div>
+
+        <h2 class="site_subtitle">PQMark</h2>
+
         <hr />
-        <footer>
-            <p style="text-align: center">Proof-of-Concept   -   Copyright &copy; 2016 Electric Power Research Institute.  All Rights Reserved.</p>
-        </footer>
     </div>
 
-    <div id="modal" class="modal fade" role="dialog">
-        <div class="modal-dialog" style="width: 850px">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" style="text-align-last: center">Proposed Architecture</h4>
-                </div>
-                <div class="modal-body">
-                    <img src="@Url.Content("~/Images/PQMarkOverview.png")"/>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+    <div class="nav_main nav">
+        <ul>
+            <li>
+                <p>@Html.ActionLink("Home", "Index", "Home")</p>
+            </li>
+            <li>
+                <p>@Html.ActionLink("PQ Events", "PQEventMagnitudeDuration", "Home")</p>
+            </li>
+            <li>
+                <p>@Html.ActionLink("Event Rates", "PQVoltage3D", "Home")</p>
+            </li>
+            <li>
+                <p>@Html.ActionLink("SARFI", "SARFI", "Home")</p>
+            </li>
+            <li>
+                <p>@Html.ActionLink("Steady State", "VoltageTHDFrequency", "Home")</p>
+            </li>
+        </ul>
+    </div>
+
+    <div class="breadcrumb">
+        <p>
+            <strong>You Are Here:</strong>
+            <a title="EPRI.com" href="#">PQMark</a> &gt;
+            <strong id="breadcrumbText">Home</strong>
+        </p>
+        <hr />
+    </div>
+
+<div id="viewWindow" class="container body-content">
+    @RenderBody()
+</div>
+
+@Html.Raw(ViewBag.Footer)
+@*<div class="footer">
+    <hr />
+
+    <div class="nav_post nav">
+        <ul>
+            <li><a title="Careers" href="http://www.epri.com/Careers/Pages/Default.aspx">Careers</a></li>
+            <li><a title="Contact EPRI" href="http://www.epri.com/Help/Pages/Contact-Us.aspx">Contact EPRI</a></li>
+            <li><a title="Copyright Policy" href="http://www.epri.com/Help/Pages/Copyright-Policy.aspx">Copyright Policy</a></li>
+            <li><a title="Privacy Statement" href="http://www.epri.com/Help/Pages/Privacy-Statement.aspx">Privacy Statement</a></li>
+            <li><a title="Terms of Use" href="http://www.epri.com/Help/Pages/Terms-of-Use.aspx">Terms of Use</a></li>
+        </ul>
+    </div>
+    <p>800.313.3774 or 650.855.2121</p>
+    <address>EPRI 3420 Hillview Avenue, Palo Alto, California 94304</address>
+    <p>&copy; Electric Power Research Institute, Inc. 2001-2013 All rights reserved</p>
+</div>*@
+
+
+<div id="modal" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="width: 850px">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align-last: center">Proposed Architecture</h4>
+            </div>
+            <div class="modal-body">
+                <img src="@Url.Content("~/Images/PQMarkOverview.png")"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    <script src="@Url.Content("~/Scripts/ie10-viewport-bug-workaround.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/json2.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.signalR-2.2.1.js")"></script>
-    <script src="@Url.Content("~/signalr/hubs")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/PQMark.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/plotly-latest.min.js")"></script>
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+<script src="@Url.Content("~/Scripts/ie10-viewport-bug-workaround.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/json2.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.signalR-2.2.1.js")"></script>
+<script src="@Url.Content("~/signalr/hubs")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/PQMark.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/plotly-latest.min.js")"></script>
+<script>
+    $(function () {
+        $('.nav_main li').removeClass('nav_active');
 
-    @RenderSection("Scripts", required: false)
+        $('.nav_main li:contains(@ViewBag.Navbar)').addClass('nav_active');
+    })
+</script>
+
+@RenderSection("Scripts", required: false)
 </body>
 </html>

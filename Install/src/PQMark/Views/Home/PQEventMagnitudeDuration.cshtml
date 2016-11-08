@@ -24,6 +24,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "PQ Event Magnitude-Duration Scatter Plot";
+    ViewBag.Navbar = "PQ Events";
 }
 
 @section StyleSheets
@@ -47,6 +48,8 @@
 @section Scripts
 {
     <script>
+        $('#breadcrumbText').text("PQ Events");
+
         $(function () {
             $('#viewWindow').height($(window).innerHeight() - $('#navBar').outerHeight() - $('#companySelect').height());
             //$('#viewWindow').width('100%');
@@ -192,7 +195,8 @@
 
             });
         });
-</script>
+
+    </script>
 
 }
 
