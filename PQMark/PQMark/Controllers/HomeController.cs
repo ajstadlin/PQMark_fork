@@ -81,11 +81,11 @@ namespace PQMark.Controllers
             string logoutUrl = ConfigurationFile.Current.Settings["systemSettings"]["LogoutUrl"].Value;
 
             // get the logout url from config file if in DEV or TEST
-            if (Request.Url.AbsoluteUri.ToLower().Contains("amidev"))
+            if (Request.Url.AbsoluteUri.ToLower().Contains("dev"))
             {
                 logoutUrl = ConfigurationFile.Current.Settings["systemSettings"]["LogoutUrl_EpriDev"].Value;
             }
-            else if (Request.Url.AbsoluteUri.ToLower().Contains("amitest"))
+            else if (Request.Url.AbsoluteUri.ToLower().Contains("test"))
             {
                 logoutUrl = ConfigurationFile.Current.Settings["systemSettings"]["LogoutUrl_EpriTest"].Value;
             }
